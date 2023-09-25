@@ -497,7 +497,7 @@
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 4e76e4f2-ef96-44e9-9411-cf55f5778870)
     )
-    (fp_text value "Conn_01x06_Pin" (at 0 12.06 180) (layer "F.Fab")
+    (fp_text value "Conn_01x06_Pin" (at 0 12.06 180) (layer "F.Fab") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp b7bd0d38-2ad6-4cad-8ce4-23eafdd13ee5)
     )
@@ -2826,7 +2826,7 @@
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 7e94f87c-ff62-4934-9514-679e61e66f2f)
     )
-    (fp_text value "Conn_01x06_Pin" (at 0 12.06 -90) (layer "F.Fab")
+    (fp_text value "Conn_01x06_Pin" (at 0 12.06 -90) (layer "F.Fab") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 4c2c58a6-9684-4cd2-ba5f-5e0c1e69e775)
     )
@@ -3200,7 +3200,7 @@
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp db148d2d-ce59-4828-8a87-28254577b927)
     )
-    (fp_text value "Conn_01x06_Pin" (at 0 12.06) (layer "F.Fab")
+    (fp_text value "Conn_01x06_Pin" (at 0 12.06) (layer "F.Fab") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 603449a4-10da-4ab2-b522-2d9ec0df9f0d)
     )
@@ -3514,7 +3514,7 @@
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp ac699fd5-ca8a-4afe-b6b0-865864c5d0c3)
     )
-    (fp_text value "Conn_01x06_Pin" (at 0 12.06 90) (layer "F.Fab")
+    (fp_text value "Conn_01x06_Pin" (at 0 12.06 90) (layer "F.Fab") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 58b839ef-2e73-45e3-91ad-cde41567de68)
     )
