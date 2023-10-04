@@ -6,14 +6,21 @@
 
 #include <Wire.h>
 #include "config.h"
+#include "protocol.h"
 #include "sr.h"
 
 void receive()
 {
-	byte message[256] = {0};
+	byte message[BUFFSIZE] = {0};
 
-	for (uint8_t i = 0; Wire.available() || i >= 255; i++)
+	for (uint64_t i = 0; Wire.available() || i >= BUFFSIZE-1; i++)
 		message[i] = Wire.read();
+
+	if (!validate_message(message, BUFFSIZE))
+	{
+		Serial.println("Invalid message.");
+		return;
+	}
 }
 
 void setup()

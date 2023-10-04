@@ -17,6 +17,12 @@ uint8_t END_MARKER[3] = { 0x20, 0x79, 0x33 };
    the message was successfully validated. */
 bool validate_message(char *buffer, int len)
 {
+	/* Preamble validation. */
+	for (uint8_t i = 0; i < 3; i++)
+		if (buffer[i] != PREAMBLE[i])
+			return false;
+
+	return true;
 }
 
 #endif
