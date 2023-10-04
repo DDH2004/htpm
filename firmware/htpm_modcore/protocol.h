@@ -33,15 +33,15 @@ bool validate_message(char *buffer, uint8_t len)
 		if (_b(buffer,4+_b(buffer,3)+i) != _b(END_MARKER,i))
 			return false;
 
-	/* CRC-8 validation. Attribution to rcgldr. */
-	uint8_t crc = 0xFF;
+	/* CRC-8 validation with standard CRC8 parameters. See crccalc.com */
+	uint8_t crc = 0x00;
 	for (uint8_t i = 0; i < _b(buffer,3)-1; i++)
 	{
 		crc ^= _b(buffer,4+i);
 		for (uint8_t j = 0; j < 8; j++)
 		{
 			if (crc & 0x80)
-				crc = (uint8_t)((crc << 1) ^ 0x31);
+				crc = (uint8_t)((crc << 1) ^ 0x07);
 			else
 				crc <<= 1;
 		}
