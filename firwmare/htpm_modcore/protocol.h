@@ -22,6 +22,11 @@ bool validate_message(char *buffer, int len)
 		if (buffer[i] != PREAMBLE[i])
 			return false;
 
+	/* Length and end marker validation. */
+	for (uint8_t i = 0; i < 3; i++)
+		if (buffer[4+buffer[3]+i] != END_MARKER[i])
+			return false;
+
 	return true;
 }
 
