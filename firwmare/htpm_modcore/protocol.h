@@ -1,0 +1,7 @@
+enum MTYPE {
+	PING,
+	ACK,
+	ACTUATION,
+	TMASK,
+	TSET,
+}
