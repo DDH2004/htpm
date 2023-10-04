@@ -1,13 +1,32 @@
-void sr_write(uint8_t ser, uint8_t rclk, uint8_t srclk, uint16_t val)
+#ifndef SR_H
+#define SR_H
+
+enum PINS
 {
-	digitalWrite(rclk, LOW);
+	SER   = 2,
+	RCLK  = 3,
+	SRCLK = 4,
+};
+
+void sr_init()
+{
+	pinMode(SER   , OUTPUT);
+	pinMode(RCLK  , OUTPUT);
+	pinMode(SRCLK , OUTPUT);
+}
+
+void sr_write(uint16_t val)
+{
+	digitalWrite(RCLK, LOW);
 
 	for (uint8_t i = 0; i < 16; i++)
 	{
-		digitalWrite(ser, (val >> i) & 1);
-		digitalWrite(srclk, HIGH);
-		digitalWrite(srclk, LOW);
+		digitalWrite(SER, (val >> i) & 1);
+		digitalWrite(SRCLK, HIGH);
+		digitalWrite(SRCLK, LOW);
 	}
 
-	digitalWrite(rclk, HIGH);
+	digitalWrite(RCLK, HIGH);
 }
+
+#endif

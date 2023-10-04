@@ -8,10 +8,6 @@
 #include "config.h"
 #include "sr.h"
 
-#define SER    2
-#define RCLK   3
-#define SRCLK  4
-
 void receive()
 {
 	byte message[256] = {0};
@@ -23,14 +19,12 @@ void receive()
 void setup()
 {
 	Serial.begin(9600);
-	pinMode(SER  , OUTPUT);
-	pinMode(RCLK , OUTPUT);
-	pinMode(SRCLK, OUTPUT);
 
 	Wire.begin(ADDRESS);
 	Wire.onReceive(receive);
 
-	sr_write(SER, RCLK, SRCLK, 0);
+	sr_init();
+	sr_write(0);
 }
 
 void loop()
