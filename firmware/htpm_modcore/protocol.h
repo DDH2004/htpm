@@ -30,14 +30,14 @@ bool validate_message(char *buffer, uint8_t len)
 
 	/* Length and end marker validation. */
 	for (uint8_t i = 0; i < 3; i++)
-		if (_b(buffer,4+_b(buffer,3)+i) != _b(END_MARKER,i))
+		if (_b(buffer,5+_b(buffer,3)+i) != _b(END_MARKER,i))
 			return false;
 
 	/* CRC-8 validation with standard CRC8 parameters. See crccalc.com */
 	uint8_t crc = 0x00;
-	for (uint8_t i = 0; i < _b(buffer,3)-1; i++)
+	for (uint8_t i = 0; i < 1+_b(buffer,3); i++)
 	{
-		crc ^= _b(buffer,4+i);
+		crc ^= _b(buffer,3+i);
 		for (uint8_t j = 0; j < 8; j++)
 		{
 			if (crc & 0x80)
@@ -47,7 +47,7 @@ bool validate_message(char *buffer, uint8_t len)
 		}
 	}
 
-	if (crc != _b(buffer,4+_b(buffer,3)-1))
+	if (crc != _b(buffer,4+_b(buffer,3)))
 		return false;
 
 	return true;
