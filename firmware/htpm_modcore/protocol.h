@@ -34,7 +34,7 @@ bool validate(char *buffer, uint8_t len)
 		if (_b(buffer,i) != _b(PREAMBLE,i))
 			return false;
 
-	/* Length and end marker validation. */
+	/* Length-based end marker validation. */
 	for (uint8_t i = 0; i < 3; i++)
 		if (_b(buffer,5+_b(buffer,3)+i) != _b(END_MARKER,i))
 			return false;
@@ -56,18 +56,34 @@ bool validate(char *buffer, uint8_t len)
 	if (crc != _b(buffer,4+_b(buffer,3)))
 		return false;
 
-	/* Finally make sure that it's a valid MTYPE. */
+	/* Finally make sure that it's a valid MTYPE with the right length. */
 	switch (_b(buffer,4) >> 4)
 	{
 		case PING:
+			if (_b(buffer,3) != 0x04)
+				return false;
+			break;
 		case ACK:
+			if (_b(buffer,3) != 0x05)
+				return false;
+			break;
 		case ACTUATION:
+			if (_b(buffer,3) != 0x06)
+				return false;
+			break;
 		case TMASK:
+			if (_b(buffer,3) != 0x06)
+				return false;
+			break;
 		case TSET:
-			return true;
+			if (_b(buffer,3) != 0x08)
+				return false;
+			break;
+		default:
+			return false;
 	}
 
-	return false;
+	return true;
 }
 
 /* Debug print the contents of a message to serial. */
