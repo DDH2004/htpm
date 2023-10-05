@@ -19,9 +19,15 @@ byte _b(byte *buffer, uint8_t i)
 	return buffer[i] & 0xFF;
 }
 
+/* Safely grab just one byte from a valid message's data section. */
+byte _d(byte *message, uint8_t i)
+{
+	return message[4+i] & 0xFF;
+}
+
 /* Validate a message's preamble, end marker, length, and CRC. Return true if
    the message was successfully validated. */
-bool validate_message(char *buffer, uint8_t len)
+bool validate(char *buffer, uint8_t len)
 {
 	/* Preamble validation. */
 	for (uint8_t i = 0; i < 3; i++)
@@ -62,6 +68,50 @@ bool validate_message(char *buffer, uint8_t len)
 	}
 
 	return false;
+}
+
+/* Debug print the contents of a message to serial. */
+void debug_print(byte *message)
+{
+	uint32_t buffer32 = 0;
+
+	switch (_b(message,4) >> 4)
+	{
+		case PING:
+			Serial.println("------------------------");
+			Serial.println("TYPE ........ PING");
+			Serial.print("MSG ID ...... ");
+			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
+			Serial.println(buffer32);
+			Serial.print("SRC ......... ");
+			Serial.println(_d(message,2));
+			Serial.print("DST ......... ");
+			Serial.println(_d(message,3));
+			Serial.println("------------------------");
+			break;
+		case ACK:
+			Serial.println("------------------------");
+			Serial.println("TYPE ........ ACK");
+			Serial.print("MSG ID ...... ");
+			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
+			Serial.println(buffer32);
+			Serial.print("SRC ......... ");
+			Serial.println(_d(message,2));
+			Serial.print("DST ......... ");
+			Serial.println(_d(message,3));
+			Serial.print("VER ......... ");
+			Serial.println(_d(message,4));
+			Serial.println("------------------------");
+			break;
+		case ACTUATION:
+			break;
+		case TMASK:
+			break;
+		case TSET:
+			break;
+		default:
+			Serial.println("Invalid MTYPE.");
+	}
 }
 
 #endif

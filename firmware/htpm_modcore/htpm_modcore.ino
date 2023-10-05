@@ -16,11 +16,13 @@ void receive()
 	for (uint64_t i = 0; Wire.available() || i >= BUFFSIZE-1; i++)
 		message[i] = Wire.read();
 
-	if (!validate_message(message, BUFFSIZE))
+	if (!validate(message, BUFFSIZE))
 	{
 		Serial.println("Invalid message.");
 		return;
 	}
+
+	debug_print(message);
 }
 
 void setup()
