@@ -50,7 +50,18 @@ bool validate_message(char *buffer, uint8_t len)
 	if (crc != _b(buffer,4+_b(buffer,3)))
 		return false;
 
-	return true;
+	/* Finally make sure that it's a valid MTYPE. */
+	switch (_b(buffer,4) >> 4)
+	{
+		case PING:
+		case ACK:
+		case ACTUATION:
+		case TMASK:
+		case TSET:
+			return true;
+	}
+
+	return false;
 }
 
 #endif
