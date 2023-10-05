@@ -95,8 +95,8 @@ void debug_print(byte *message)
 	{
 		case PING:
 			Serial.println("------------------------");
-			Serial.println("TYPE ........ PING");
-			Serial.print("MSG ID ...... ");
+			Serial.println("MTYPE ....... PING");
+			Serial.print("MID ......... ");
 			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
 			Serial.println(buffer32);
 			Serial.print("SRC ......... ");
@@ -107,8 +107,8 @@ void debug_print(byte *message)
 			break;
 		case ACK:
 			Serial.println("------------------------");
-			Serial.println("TYPE ........ ACK");
-			Serial.print("MSG ID ...... ");
+			Serial.println("MTYPE ....... ACK");
+			Serial.print("MID ......... ");
 			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
 			Serial.println(buffer32);
 			Serial.print("SRC ......... ");
@@ -120,10 +120,55 @@ void debug_print(byte *message)
 			Serial.println("------------------------");
 			break;
 		case ACTUATION:
+			Serial.println("------------------------");
+			Serial.println("MTYPE........ ACTUATION");
+			Serial.print("MID ......... ");
+			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
+			Serial.println(buffer32);
+			Serial.print("SRC ......... ");
+			Serial.println(_d(message,2));
+			Serial.print("DST ......... ");
+			Serial.println(_d(message,3));
+			Serial.print("VALUES ...... ");
+			buffer32 = (_d(message,4) << 8) | _d(message,5) & 0xFFFF;
+			Serial.println(buffer32, HEX);
+			Serial.println("------------------------");
 			break;
 		case TMASK:
+			Serial.println("------------------------");
+			Serial.println("MTYPE........ TMASK");
+			Serial.print("MID ......... ");
+			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
+			Serial.println(buffer32);
+			Serial.print("SRC ......... ");
+			Serial.println(_d(message,2));
+			Serial.print("DST ......... ");
+			Serial.println(_d(message,3));
+			Serial.print("MASK ........ ");
+			buffer32 = (_d(message,4) << 8) | _d(message,5) & 0xFFFF;
+			Serial.println(buffer32, HEX);
+			Serial.println("------------------------");
 			break;
 		case TSET:
+			Serial.println("------------------------");
+			Serial.println("MTYPE........ TSET");
+			Serial.print("MID ......... ");
+			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
+			Serial.println(buffer32);
+			Serial.print("SRC ......... ");
+			Serial.println(_d(message,2));
+			Serial.print("DST ......... ");
+			Serial.println(_d(message,3));
+			Serial.print("INDEX ....... ");
+			Serial.println(_d(message,4) >> 4, DEC);
+			Serial.print("TIMER ....... ");
+			buffer32 = (_d(message,4) & 0x0F) << 8 | _d(message,5);
+			buffer32 <<= 8;
+			buffer32 |= _d(message,6);
+			buffer32 <<= 8;
+			buffer32 |= _d(message,7);
+			Serial.println(buffer32, HEX);
+			Serial.println("------------------------");
 			break;
 		default:
 			Serial.println("Invalid MTYPE.");
