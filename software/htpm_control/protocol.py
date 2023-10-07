@@ -82,7 +82,11 @@ class Ping(Message):
 		self.mid    = mid
 		self.src    = src
 		self.dst    = dst
-		super().__init__(Message.make([self.mtype, self.mid, self.src, self.dst]))
+		super().__init__(Message.make([
+			(self.mtype << 4) | (self.mid >> 8),
+			self.mid,
+			self.src, self.dst
+		]))
 
 	def info(self):
 		print(f"MTYPE  : {self.mtype} (PING)")
@@ -105,7 +109,10 @@ class Ack(Message):
 		self.dst    = dst
 		self.ver    = ver
 		super().__init__(Message.make([
-			self.mtype, self.mid, self.src, self.dst, self.ver]))
+			(self.mtype << 4) | (self.mid >> 8),
+			self.mid,
+			self.src, self.dst, self.ver
+		]))
 
 	def info(self):
 		print(f"MTYPE  : {self.mtype} (ACK)")
@@ -129,7 +136,9 @@ class Actuation(Message):
 		self.dst     = dst
 		self.values  = values
 		super().__init__(Message.make([
-			self.mtype, self.mid, self.src, self.dst,
+			(self.mtype << 4) | (self.mid >> 8),
+			self.mid,
+			self.src, self.dst,
 			*self.values.to_bytes(2, "big")
 		]))
 
@@ -155,7 +164,9 @@ class Tmask(Message):
 		self.dst    = dst
 		self.mask   = mask
 		super().__init__(Message.make([
-			self.mtype, self.mid, self.src, self.dst,
+			(self.mtype << 4) | (self.mid >> 8),
+			self.mid,
+			self.src, self.dst,
 			*self.mask.to_bytes(2, "big")
 		]))
 
@@ -189,7 +200,9 @@ class Tset(Message):
 		self.offTime  = offTime
 		self.onTime   = onTime
 		super().__init__(Message.make([
-			self.mtype, self.mid, self.src, self.dst,
+			(self.mtype << 4) | (self.mid >> 8),
+			self.mid,
+			self.src, self.dst,
 			self.index,
 			*self.delay.to_bytes(4, "big"),
 			*self.offTime.to_bytes(4, "big"),
