@@ -140,3 +140,29 @@ class Actuation(Message):
 		print(f"DST    : {self.dst}")
 		print(f"VALUES : {self.values}")
 
+class Tmask(Message):
+
+	mtype  = None
+	mid    = None
+	src    = None
+	dst    = None
+	mask   = None
+
+	def __init__(self, mid: int, src: int, dst: int, mask: int):
+		self.mtype  = 2
+		self.mid    = mid
+		self.src    = src
+		self.dst    = dst
+		self.mask   = mask
+		super().__init__(Message.make([
+			self.mtype, self.mid, self.src, self.dst,
+			*self.mask.to_bytes(2, "big")
+		]))
+
+	def info(self):
+		print(f"MTYPE  : {self.mtype} (TMASK)")
+		print(f"MID    : {self.mid}")
+		print(f"SRC    : {self.src}")
+		print(f"DST    : {self.dst}")
+		print(f"MASK   : {self.mask}")
+
