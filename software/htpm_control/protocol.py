@@ -36,7 +36,10 @@ class Message:
 	def _validate(self) -> bool:
 
 		data = [self.length, *self.data]
+		return self.crc8(data) == self.crc
 
+	def crc8(self, data):
+		
 		crc = 0
 		for i in range(len(data)):
 			crc ^= data[i]
@@ -47,5 +50,5 @@ class Message:
 				else:
 					crc <<= 1
 
-		return crc == self.crc
+		return crc
 
