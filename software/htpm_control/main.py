@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
+from I2C import *
 from protocol import *
 
 def main():
 
-	message = Message(bytearray([
-		0x33, 0x79, 0x20, 0x04, 0x00, 0x00, 0x00, 0x01, 0x88, 0x20, 0x79, 0x33
-	]))
+	i2c = I2C()
 
-	print(message)
+	packet = Tset(0, 1, 2, 10, 100, 500, 200)
+	packet.info()
+	i2c.send(0x10, packet.bytes())
 
 if __name__ == "__main__":
 	main()
