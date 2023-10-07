@@ -161,7 +161,7 @@ void debug_print(byte *message)
 			Serial.print("DST ......... ");
 			Serial.println(_d(message,3));
 			Serial.print("INDEX ....... ");
-			Serial.println(_d(message,4) >> 4, DEC);
+			Serial.println(_d(message,4));
 			Serial.print("TIMER ....... ");
 			buffer32 = (_d(message,4) & 0x0F) << 8 | _d(message,5);
 			buffer32 <<= 8;
