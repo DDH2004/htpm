@@ -90,3 +90,27 @@ class Ping(Message):
 		print(f"SRC    : {self.src}")
 		print(f"DST    : {self.dst}")
 
+class Ack(Message):
+
+	mtype  = None
+	mid    = None
+	src    = None
+	dst    = None
+	ver    = None
+
+	def __init__(self, mid: int, src: int, dst: int, ver: int):
+		self.mtype  = 2
+		self.mid    = mid
+		self.src    = src
+		self.dst    = dst
+		self.ver    = ver
+		super().__init__(Message.make([
+			self.mtype, self.mid, self.src, self.dst, self.ver]))
+
+	def info(self):
+		print(f"MTYPE  : {self.mtype} (ACK)")
+		print(f"MID    : {self.mid}")
+		print(f"SRC    : {self.src}")
+		print(f"DST    : {self.dst}")
+		print(f"VER    : {self.ver}")
+
