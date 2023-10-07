@@ -6,7 +6,7 @@ class Message:
 	crc       = None
 	end       = None
 
-	def __init__(self, content: bytearray):
+	def __init__(self, content: bytes):
 		self.preamble  = content[0:3]
 		self.length    = content[3]
 		self.data      = content[4:4+self.length]
@@ -52,8 +52,8 @@ class Message:
 
 		return crc
 
-	def make(data) -> bytearray:
-		return bytearray([
+	def make(data) -> bytes:
+		return bytes([
 			0x33, 0x79, 0x20,
 			len(data),
 			*data,
@@ -78,7 +78,7 @@ class Ping(Message):
 	dst    = None
 
 	def __init__(self, mid: int, src: int, dst: int):
-		self.mtype  = 1
+		self.mtype  = 0
 		self.mid    = mid
 		self.src    = src
 		self.dst    = dst
@@ -99,7 +99,7 @@ class Ack(Message):
 	ver    = None
 
 	def __init__(self, mid: int, src: int, dst: int, ver: int):
-		self.mtype  = 2
+		self.mtype  = 1
 		self.mid    = mid
 		self.src    = src
 		self.dst    = dst
@@ -113,4 +113,30 @@ class Ack(Message):
 		print(f"SRC    : {self.src}")
 		print(f"DST    : {self.dst}")
 		print(f"VER    : {self.ver}")
+
+class Actuation(Message):
+
+	mtype   = None
+	mid     = None
+	src     = None
+	dst     = None
+	values  = None
+
+	def __init__(self, mid: int, src: int, dst: int, values: int):
+		self.mtype   = 2
+		self.mid     = mid
+		self.src     = src
+		self.dst     = dst
+		self.values  = values
+		super().__init__(Message.make([
+			self.mtype, self.mid, self.src, self.dst,
+			*self.values.to_bytes(2, "big")
+		]))
+
+	def info(self):
+		print(f"MTYPE  : {self.mtype} (ACTUATION)")
+		print(f"MID    : {self.mid}")
+		print(f"SRC    : {self.src}")
+		print(f"DST    : {self.dst}")
+		print(f"VALUES : {self.values}")
 
