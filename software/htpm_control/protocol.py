@@ -16,29 +16,29 @@ class Message:
 	def __str__(self):
 
 		formatted  = "--[ MESSAGE ]--\n"
-		formatted += f"Preamble: 0x{self.preamble.hex()}\n"
-		formatted += f"Length  : 0x{self.length:02X}\n"
+		formatted += f"Preamble  : 0x{self.preamble.hex()}\n"
+		formatted += f"Length    : 0x{self.length:02X}\n"
 
 		if self.length != 0x00:
-			formatted += f"Data    : 0x{self.data.hex()}\n"
+			formatted += f"Data      : 0x{self.data.hex()}\n"
 		else:
-			formatted += f"Data    : <empty>\n"
+			formatted += f"Data      : <empty>\n"
 
 		if self._validate():
-			formatted += f"CRC-8   : 0x{self.crc:02X} (valid)\n"
+			formatted += f"CRC-8     : 0x{self.crc:02X} (valid)\n"
 		else:
-			formatted += f"CRC-8   : 0x{self.crc:02X} (invalid)\n"
+			formatted += f"CRC-8     : 0x{self.crc:02X} (invalid)\n"
 
-		formatted += f"End     : 0x{self.end.hex()}"
+		formatted += f"End       : 0x{self.end.hex()}"
 
 		return formatted
 
 	def _validate(self) -> bool:
 
 		data = [self.length, *self.data]
-		return self.crc8(data) == self.crc
+		return Message.crc8(data) == self.crc
 
-	def crc8(self, data):
+	def crc8(data: list):
 		
 		crc = 0
 		for i in range(len(data)):
@@ -51,4 +51,42 @@ class Message:
 					crc <<= 1
 
 		return crc
+
+	def make(data) -> bytearray:
+		return bytearray([
+			0x33, 0x79, 0x20,
+			len(data),
+			*data,
+			Message.crc8([len(data), *data]),
+			0x20, 0x79, 0x33
+		])
+
+	def bytes(self) -> list:
+		return [
+			*self.preamble,
+			self.length,
+			*self.data,
+			self.crc,
+			*self.end
+		]
+
+class Ping(Message):
+
+	mtype  = None
+	mid    = None
+	src    = None
+	dst    = None
+
+	def __init__(self, mid: int, src: int, dst: int):
+		self.mtype  = 1
+		self.mid    = mid
+		self.src    = src
+		self.dst    = dst
+		super().__init__(Message.make([self.mtype, self.mid, self.src, self.dst]))
+
+	def info(self):
+		print(f"MTYPE  : {self.mtype} (PING)")
+		print(f"MID    : {self.mid}")
+		print(f"SRC    : {self.src}")
+		print(f"DST    : {self.dst}")
 
