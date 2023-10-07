@@ -39,7 +39,7 @@ bool validate(char *buffer, uint8_t len)
 		if (_b(buffer,5+_b(buffer,3)+i) != _b(END_MARKER,i))
 			return false;
 
-	/* CRC-8 validation with standard CRC8 parameters. See crccalc.com */
+	/* Calculate the CRC-8 with standard CRC8 parameters. See crccalc.com */
 	uint8_t crc = 0x00;
 	for (uint8_t i = 0; i < 1+_b(buffer,3); i++)
 	{
@@ -53,6 +53,7 @@ bool validate(char *buffer, uint8_t len)
 		}
 	}
 
+	/* Check if the message was corrupted. */
 	if (crc != _b(buffer,4+_b(buffer,3)))
 		return false;
 
@@ -76,7 +77,7 @@ bool validate(char *buffer, uint8_t len)
 				return false;
 			break;
 		case TSET:
-			if (_b(buffer,3) != 0x08)
+			if (_b(buffer,3) != 0x0D)
 				return false;
 			break;
 		default:
