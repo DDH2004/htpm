@@ -77,7 +77,7 @@ bool validate(char *buffer, uint8_t len)
 				return false;
 			break;
 		case TSET:
-			if (_b(buffer,3) != 0x0D)
+			if (_b(buffer,3) != 0x11)
 				return false;
 			break;
 		default:
