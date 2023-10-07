@@ -44,11 +44,11 @@ class Message:
 		for i in range(len(data)):
 			crc ^= data[i]
 			for j in range(8):
-				crc &= 0xFF
 				if crc & 0x80:
 					crc = (crc << 1) ^ 0x07
 				else:
 					crc <<= 1
+				crc &= 0xFF
 
 		return crc
 
@@ -149,7 +149,7 @@ class Tmask(Message):
 	mask   = None
 
 	def __init__(self, mid: int, src: int, dst: int, mask: int):
-		self.mtype  = 2
+		self.mtype  = 3
 		self.mid    = mid
 		self.src    = src
 		self.dst    = dst
@@ -165,4 +165,44 @@ class Tmask(Message):
 		print(f"SRC    : {self.src}")
 		print(f"DST    : {self.dst}")
 		print(f"MASK   : {self.mask}")
+
+class Tset(Message):
+
+	mtype    = None
+	mid      = None
+	src      = None
+	dst      = None
+	index    = None
+	delay    = None
+	offTime  = None
+	onTime   = None
+
+	def __init__(self, mid: int, src: int, dst: int, index: int, delay: int,
+		offTime: int, onTime: int):
+
+		self.mtype    = 4
+		self.mid      = mid
+		self.src      = src
+		self.dst      = dst
+		self.index    = index
+		self.delay    = delay
+		self.offTime  = offTime
+		self.onTime   = onTime
+		super().__init__(Message.make([
+			self.mtype, self.mid, self.src, self.dst,
+			self.index,
+			*self.delay.to_bytes(4, "big"),
+			*self.offTime.to_bytes(4, "big"),
+			*self.onTime.to_bytes(4, "big"),
+		]))
+
+	def info(self):
+		print(f"MTYPE     : {self.mtype} (TSET)")
+		print(f"MID       : {self.mid}")
+		print(f"SRC       : {self.src}")
+		print(f"DST       : {self.dst}")
+		print(f"INDEX     : {self.index}")
+		print(f"DELAY     : {self.delay}")
+		print(f"OFF_TIME  : {self.offTime}")
+		print(f"ON_TIME   : {self.onTime}")
 
