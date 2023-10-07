@@ -13,6 +13,9 @@ void receive()
 {
 	byte message[BUFFSIZE] = {0};
 
+	/* Skip the register byte. */
+	Wire.read();
+
 	for (uint64_t i = 0; Wire.available() || i >= BUFFSIZE-1; i++)
 		message[i] = Wire.read();
 
