@@ -46,3 +46,19 @@ class Team(UserMixin, db.Model):
 		except:
 			return None
 
+class Player(db.Model):
+
+	__tablename__ = "players"
+
+	id = db.Column(db.Integer, primary_key=True)
+	team = db.Column(db.Integer, db.ForeignKey(Team.id), unique=False, nullable=False)
+	name = db.Column(db.String(256), unique=False, nullable=False)
+
+	def __init__(self, team, name):
+
+		# Team and name cannot be blank.
+		assert team != None and name != None
+
+		self.team = team
+		self.name = name
+
