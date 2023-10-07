@@ -24,8 +24,28 @@ class Message:
 		else:
 			formatted += f"Data    : <empty>\n"
 
-		formatted += f"CRC-8   : 0x{self.crc:02X}\n"
+		if self._validate():
+			formatted += f"CRC-8   : 0x{self.crc:02X} (valid)\n"
+		else:
+			formatted += f"CRC-8   : 0x{self.crc:02X} (invalid)\n"
+
 		formatted += f"End     : 0x{self.end.hex()}"
 
 		return formatted
+
+	def _validate(self) -> bool:
+
+		data = [self.length, *self.data]
+
+		crc = 0
+		for i in range(len(data)):
+			crc ^= data[i]
+			for j in range(8):
+				crc &= 0xFF
+				if crc & 0x80:
+					crc = (crc << 1) ^ 0x07
+				else:
+					crc <<= 1
+
+		return crc == self.crc
 
