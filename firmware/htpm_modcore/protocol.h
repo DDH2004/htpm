@@ -130,7 +130,7 @@ void debug_print(byte *message)
 			Serial.println(_d(message,2));
 			Serial.print("DST ......... ");
 			Serial.println(_d(message,3));
-			Serial.print("VALUES ...... ");
+			Serial.print("VALUES ...... 0x");
 			buffer32 = (_d(message,4) << 8) | _d(message,5) & 0xFFFF;
 			Serial.println(buffer32, HEX);
 			Serial.println("------------------------");
@@ -145,7 +145,7 @@ void debug_print(byte *message)
 			Serial.println(_d(message,2));
 			Serial.print("DST ......... ");
 			Serial.println(_d(message,3));
-			Serial.print("MASK ........ ");
+			Serial.print("MASK ........ 0x");
 			buffer32 = (_d(message,4) << 8) | _d(message,5) & 0xFFFF;
 			Serial.println(buffer32, HEX);
 			Serial.println("------------------------");
@@ -162,13 +162,22 @@ void debug_print(byte *message)
 			Serial.println(_d(message,3));
 			Serial.print("INDEX ....... ");
 			Serial.println(_d(message,4));
-			Serial.print("TIMER ....... ");
-			buffer32 = (_d(message,4) & 0x0F) << 8 | _d(message,5);
-			buffer32 <<= 8;
-			buffer32 |= _d(message,6);
-			buffer32 <<= 8;
-			buffer32 |= _d(message,7);
-			Serial.println(buffer32, HEX);
+			Serial.print("DELAY ....... ");
+			buffer32  = (uint32_t)_d(message,5) << 24 | (uint32_t)_d(message,6) << 16
+				| (uint32_t)_d(message,7) << 8 | (uint32_t)_d(message,8);
+			Serial.println(buffer32);
+			Serial.print("OFF_TIME .... ");
+			buffer32  = (uint32_t)_d(message,9) << 24 | (uint32_t)_d(message,10) << 16
+				| (uint32_t)_d(message,11) << 8 | (uint32_t)_d(message,12);
+			Serial.println(buffer32);
+			Serial.print("ON_TIME ..... ");
+			buffer32  = (uint32_t)_d(message,13) << 24 | (uint32_t)_d(message,14) << 16
+				| (uint32_t)_d(message,15) << 8 | (uint32_t)_d(message,16);
+			buffer32  = (uint32_t)_d(message,13) << 24;
+			buffer32 |= (uint32_t)_d(message,14) << 16;
+			buffer32 |= (uint32_t)_d(message,15) << 8;
+			buffer32 |= (uint32_t)_d(message,16);
+			Serial.println(buffer32);
 			Serial.println("------------------------");
 			break;
 		default:
