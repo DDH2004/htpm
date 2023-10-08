@@ -6,12 +6,12 @@
 
   (paper "A4")
   (title_block
-    (title "HTP!m CONTROL Display")
+    (title "HTP!m CONTROL Module Display")
     (date "2023-10-07")
     (rev "1")
     (company "shawnd.xyz")
-    (comment 2 "to the user.")
-    (comment 3 "The HTP!m CONTROL display panel is a series of LED matrices that communicate data")
+    (comment 2 "status.")
+    (comment 3 "The HTP!m CONTROL Module Display highlights the selected module and its override")
   )
 
   (layers
@@ -723,8 +723,8 @@
     (property "ki_keywords" "mounting hole")
     (path "/74dbe128-2973-4be1-887b-ae28d29e018b")
     (attr exclude_from_pos_files)
-    (fp_text reference "H2" (at 0 -3.5) (layer "F.SilkS")
-        (effects (font (size 1 1) (thickness 0.15)))
+    (fp_text reference "H2" (at 0 -3.5) (layer "B.SilkS")
+        (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp c66788f9-5a4a-4ece-86f4-7c37f9586875)
     )
     (fp_text value "MountingHole" (at 0 3.5) (layer "F.Fab")
@@ -1347,8 +1347,8 @@
     (property "ki_keywords" "mounting hole")
     (path "/6879d2ce-4033-4181-bc54-d4222ddc36f7")
     (attr exclude_from_pos_files)
-    (fp_text reference "H1" (at 0 -3.5) (layer "F.SilkS")
-        (effects (font (size 1 1) (thickness 0.15)))
+    (fp_text reference "H1" (at 0 -3.5) (layer "B.SilkS")
+        (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 7f45d8a0-b408-4cd1-98a0-0f7b4c756b9e)
     )
     (fp_text value "MountingHole" (at 0 3.5) (layer "F.Fab")

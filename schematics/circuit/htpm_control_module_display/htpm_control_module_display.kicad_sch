@@ -5,12 +5,12 @@
   (paper "A4")
 
   (title_block
-    (title "HTP!m CONTROL Display")
+    (title "HTP!m CONTROL Module Display")
     (date "2023-10-07")
     (rev "1")
     (company "shawnd.xyz")
-    (comment 2 "to the user.")
-    (comment 3 "The HTP!m CONTROL display panel is a series of LED matrices that communicate data")
+    (comment 2 "status.")
+    (comment 3 "The HTP!m CONTROL Module Display highlights the selected module and its override")
   )
 
   (lib_symbols
@@ -1397,7 +1397,7 @@
     (pin "1" (uuid 97821778-2c73-4acb-b0e1-480d20a86eb3))
     (pin "2" (uuid e0d82d4b-4de6-40c6-ae8e-61a4dca61159))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP11") (unit 1)
         )
@@ -1423,7 +1423,7 @@
     (pin "1" (uuid 0577a658-ae5f-4123-8005-8853f66bd024))
     (pin "2" (uuid 6e8b7455-6c9b-4797-8a49-807476fbad5c))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP26") (unit 1)
         )
@@ -1449,7 +1449,7 @@
     (pin "1" (uuid be3a1ec9-6741-4112-9db5-0cd5dc3ec9a0))
     (pin "2" (uuid 1b07ebc8-659d-4a63-aeb7-05cc028b4a11))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D5") (unit 1)
         )
@@ -1475,7 +1475,7 @@
     (pin "1" (uuid f23c718f-c283-47f9-a140-0dd56e07414e))
     (pin "2" (uuid d8451790-bc01-4712-af9e-dce2e085ae85))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP13") (unit 1)
         )
@@ -1501,7 +1501,7 @@
     (pin "1" (uuid 64f8fed0-fdfd-413e-88b4-1662320c4ccb))
     (pin "2" (uuid 3c7d0b87-0085-4fc8-9719-57115d57f84e))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "R1") (unit 1)
         )
@@ -1527,7 +1527,7 @@
     (pin "1" (uuid 8b29f652-2d03-4961-a625-bb0a02ee3978))
     (pin "2" (uuid 5a63d00c-f786-4925-8079-b6a59c56a9f5))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP16") (unit 1)
         )
@@ -1552,7 +1552,7 @@
     )
     (pin "1" (uuid c603545f-8397-4199-b8f6-48e10165cfb7))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "#PWR05") (unit 1)
         )
@@ -1578,7 +1578,7 @@
     (pin "1" (uuid 4cfeb325-bc67-485a-b42e-a5ac69ed0bed))
     (pin "2" (uuid bf66d542-489f-48bd-b643-5f86a83e27e4))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D6") (unit 1)
         )
@@ -1604,7 +1604,7 @@
     (pin "1" (uuid 953cb21d-b978-452f-9bdd-b386bfd378a5))
     (pin "2" (uuid 0b553814-6d2c-43f5-93b7-860425a9ba39))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP8") (unit 1)
         )
@@ -1630,7 +1630,7 @@
     (pin "1" (uuid c7a30dd8-90d3-47fb-b3b3-ec72093e76be))
     (pin "2" (uuid 0cd9cad5-ba47-4b35-bfe9-646da6a468ce))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP29") (unit 1)
         )
@@ -1656,7 +1656,7 @@
     (pin "1" (uuid c2dd5303-8f05-4f80-836a-fb195624fc0c))
     (pin "2" (uuid 5057c885-33bf-47dc-bd75-f2b9cc6ebb0f))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP23") (unit 1)
         )
@@ -1682,7 +1682,7 @@
     (pin "1" (uuid 3cd2de13-0636-446f-8a7b-517bca1316ed))
     (pin "2" (uuid 10be5cb4-1b8e-4edc-9e2c-b75fe311b38e))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP28") (unit 1)
         )
@@ -1708,7 +1708,7 @@
     (pin "1" (uuid 8f2240e7-1ea3-41fc-aaeb-2e1dd164b1bc))
     (pin "2" (uuid 6ad32e3f-f2d2-42f5-8471-932ebaa76ec9))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP9") (unit 1)
         )
@@ -1734,7 +1734,7 @@
     (pin "1" (uuid b5992274-d8aa-4f38-a741-00c0670b23c6))
     (pin "2" (uuid 0a6527b8-4296-4e09-8610-534c4e717024))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "R2") (unit 1)
         )
@@ -1760,7 +1760,7 @@
     (pin "1" (uuid c3144765-25fd-4e4f-8b58-a909f9b8049d))
     (pin "2" (uuid 96788f18-e094-451d-a35d-b5f72458b1fe))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP14") (unit 1)
         )
@@ -1786,7 +1786,7 @@
     (pin "1" (uuid 9fda1dd9-0280-4843-94ab-26e599761c9c))
     (pin "2" (uuid e0d278a6-13a4-4baa-87c1-e2e8dc20a95f))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D17") (unit 1)
         )
@@ -1812,7 +1812,7 @@
     (pin "1" (uuid 916664e2-0fa4-4dda-8935-9b022937d9aa))
     (pin "2" (uuid ae19129a-d24e-4149-9bbc-ee58acd43c5e))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP3") (unit 1)
         )
@@ -1838,7 +1838,7 @@
     (pin "1" (uuid d1b7b172-c123-46d5-9f8a-738c96df2a40))
     (pin "2" (uuid 77b95dfc-4ada-4890-b90e-09ea5b649555))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D2") (unit 1)
         )
@@ -1863,7 +1863,7 @@
     )
     (pin "1" (uuid 2114a8fb-712f-4758-b715-50dc2f62b940))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "#PWR04") (unit 1)
         )
@@ -1897,7 +1897,7 @@
     (pin "8" (uuid e85ebff0-aa94-44c5-9681-35f14709cb12))
     (pin "9" (uuid ec89cdbb-94f4-4fc7-89ca-c139829079ad))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "J1") (unit 1)
         )
@@ -1923,7 +1923,7 @@
     (pin "1" (uuid 207e344d-d550-4eb0-83c8-9e523b9d971d))
     (pin "2" (uuid 67565586-cb79-4c3d-8e93-c3aa349f488c))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP1") (unit 1)
         )
@@ -1949,7 +1949,7 @@
     (pin "1" (uuid 9dfeb48f-2e4f-4413-ae4d-83276ccfe9ba))
     (pin "2" (uuid 597137ca-c818-409d-9124-fcc3777c3659))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP27") (unit 1)
         )
@@ -1975,7 +1975,7 @@
     (pin "1" (uuid 0fcbf7e3-897d-4d4b-a2c2-2955939667a7))
     (pin "2" (uuid 703d42a7-8462-4c6d-98d8-f35a83318b66))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP19") (unit 1)
         )
@@ -2001,7 +2001,7 @@
     (pin "1" (uuid 06a3bd30-4c50-4852-8580-3a7c3740fc35))
     (pin "2" (uuid 6b32f4c7-2985-456b-a9d7-7d8c29503584))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP25") (unit 1)
         )
@@ -2027,7 +2027,7 @@
     (pin "1" (uuid e02a84ae-fa03-40cd-9b54-44f987ac8eed))
     (pin "2" (uuid 5a5e094f-2957-4604-b88d-16205b8fc865))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D3") (unit 1)
         )
@@ -2051,7 +2051,7 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "H1") (unit 1)
         )
@@ -2077,7 +2077,7 @@
     (pin "1" (uuid 48fdb4b4-7d40-419d-918d-6d25b63ccbe2))
     (pin "2" (uuid bb07d3c5-37b5-4cdf-98de-7b87a4490fdc))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP4") (unit 1)
         )
@@ -2103,7 +2103,7 @@
     (pin "1" (uuid 37d978ad-a299-4e8e-8d47-91ec525c2da2))
     (pin "2" (uuid 84e9fbb7-6a0c-4ab0-b5e8-1a3d585e8833))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP5") (unit 1)
         )
@@ -2129,7 +2129,7 @@
     (pin "1" (uuid a6236989-24da-4b52-a07d-64b048f63eca))
     (pin "2" (uuid 6c426709-cf0c-40bb-9c41-afae587514c5))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D9") (unit 1)
         )
@@ -2153,7 +2153,7 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "H2") (unit 1)
         )
@@ -2179,7 +2179,7 @@
     (pin "1" (uuid c3663565-7503-48fb-a22c-29db1b82bed2))
     (pin "2" (uuid 8f6aa681-d69a-47d7-8e11-6adaba88c6b0))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP15") (unit 1)
         )
@@ -2205,7 +2205,7 @@
     (pin "1" (uuid 7c14b293-950a-4bca-941a-54279337c0a4))
     (pin "2" (uuid 99151c2a-1dd8-45d8-8596-8d7c4dffd021))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP24") (unit 1)
         )
@@ -2231,7 +2231,7 @@
     (pin "1" (uuid 39a42abf-ca63-4d80-849b-777f6056f12f))
     (pin "2" (uuid 10e02494-d2ce-458c-9224-9100dc17dfa6))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP20") (unit 1)
         )
@@ -2257,7 +2257,7 @@
     (pin "1" (uuid 7421af05-5126-4c7c-9453-20307a3a9d13))
     (pin "2" (uuid c5d18105-d44c-4022-88c3-ef4a4c92ecf4))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP2") (unit 1)
         )
@@ -2283,7 +2283,7 @@
     (pin "1" (uuid f0575913-53a0-4e9e-99cc-190211bc5ada))
     (pin "2" (uuid e46eac6a-7fe7-4dcc-bc37-a2d24e1117bf))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D14") (unit 1)
         )
@@ -2309,7 +2309,7 @@
     (pin "1" (uuid 8fd4f8bb-1632-4ea1-a6ca-19b1f2cab659))
     (pin "2" (uuid 94664b85-5bf0-41a4-b315-fbf5a9c7f0ac))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D8") (unit 1)
         )
@@ -2335,7 +2335,7 @@
     (pin "1" (uuid 6fb80cb1-21a1-4e58-8ec2-576b7d9ea243))
     (pin "2" (uuid 2e8018f0-4b61-498e-bc22-8c059c61e300))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "R4") (unit 1)
         )
@@ -2361,7 +2361,7 @@
     (pin "1" (uuid aec582c7-2180-4ff1-bea3-dc605361a5d2))
     (pin "2" (uuid 066bb2aa-3405-44ea-b57a-b28cc3c67bdc))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D16") (unit 1)
         )
@@ -2387,7 +2387,7 @@
     (pin "1" (uuid b0d18f10-853c-4a8d-964c-bc1eb2296a67))
     (pin "2" (uuid b115f3b4-d9ad-4f0a-a741-a176044e11d2))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP30") (unit 1)
         )
@@ -2413,7 +2413,7 @@
     (pin "1" (uuid 3ea005f7-e686-4faf-940f-64cebda8c339))
     (pin "2" (uuid 3c5ccc63-9317-4cf7-98a7-a54974fdb273))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP18") (unit 1)
         )
@@ -2439,7 +2439,7 @@
     (pin "1" (uuid 2f958aa7-e141-450a-9a3c-14e0776a7175))
     (pin "2" (uuid 0e4cdfd9-eca9-4052-80f1-ab703171fba4))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D13") (unit 1)
         )
@@ -2465,7 +2465,7 @@
     (pin "1" (uuid 7b357021-a680-4817-b1dc-8a1139e00f71))
     (pin "2" (uuid 54acbdf3-0f1b-42ab-8765-a382db45a1bf))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D4") (unit 1)
         )
@@ -2490,7 +2490,7 @@
     )
     (pin "1" (uuid 80eb25ca-e80f-439e-a0b0-aaabd32734d2))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "#PWR03") (unit 1)
         )
@@ -2516,7 +2516,7 @@
     (pin "1" (uuid b8df9836-be87-4de2-a15e-f2f23eec6a68))
     (pin "2" (uuid 68c35e3c-7753-4c1e-bdc2-c45e7535809d))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "R3") (unit 1)
         )
@@ -2542,7 +2542,7 @@
     (pin "1" (uuid 9e620d5a-e004-47f5-80d1-94b5825a3750))
     (pin "2" (uuid 06958a98-9da7-4a02-99f2-4a55cc3dd645))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D11") (unit 1)
         )
@@ -2567,7 +2567,7 @@
     )
     (pin "1" (uuid eec39d2f-97d2-4743-ab27-710cefeb9455))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "#PWR01") (unit 1)
         )
@@ -2593,7 +2593,7 @@
     (pin "1" (uuid fd8d67b9-cc27-4ab3-9667-59de89b580d8))
     (pin "2" (uuid 581152b0-a9e2-46e7-a0c3-9de34a785a2f))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP32") (unit 1)
         )
@@ -2619,7 +2619,7 @@
     (pin "1" (uuid 98e0b234-5ca4-47d9-8900-ad66489a07f1))
     (pin "2" (uuid 1d8abc93-8617-44f6-8c97-64fdaab496af))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D7") (unit 1)
         )
@@ -2653,7 +2653,7 @@
     (pin "8" (uuid 2f60c188-8656-40bc-8c75-b569594d773e))
     (pin "9" (uuid 3b10ae8a-c5e9-46ed-be28-7c0695421809))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "J2") (unit 1)
         )
@@ -2679,7 +2679,7 @@
     (pin "1" (uuid ca9bfa42-e040-4a67-8292-eb3203a6559c))
     (pin "2" (uuid 95964891-ed68-43bc-91f3-413d75634c5a))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP12") (unit 1)
         )
@@ -2704,7 +2704,7 @@
     )
     (pin "1" (uuid db51ae46-b96a-4222-854f-72be55c42e2c))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "#PWR02") (unit 1)
         )
@@ -2730,7 +2730,7 @@
     (pin "1" (uuid 36742d91-c1b9-4b62-bef1-bb3b11582bec))
     (pin "2" (uuid 9d0c4d68-fcd5-45ea-b5a0-e0a576d1aeed))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP17") (unit 1)
         )
@@ -2756,7 +2756,7 @@
     (pin "1" (uuid 2f8eaa10-1796-49cb-a0ad-aff85b9ec6e4))
     (pin "2" (uuid 105fe2fe-1d23-4b13-94cd-8b4282d618c4))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP7") (unit 1)
         )
@@ -2782,7 +2782,7 @@
     (pin "1" (uuid 88895a32-2c6d-4b62-9abd-9c931be81824))
     (pin "2" (uuid 116cfd4f-1e3c-47c2-bb88-24c5c3f3940a))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP22") (unit 1)
         )
@@ -2808,7 +2808,7 @@
     (pin "1" (uuid 61c8edc3-595d-4fa3-8535-8f96dc26c293))
     (pin "2" (uuid c1d76b74-52aa-4013-94cc-0a84871d81bc))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D10") (unit 1)
         )
@@ -2834,7 +2834,7 @@
     (pin "1" (uuid 50fab1c5-953a-400d-81ae-e6f841077828))
     (pin "2" (uuid c217e188-1308-405c-9f0a-4ff271b3b15f))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP6") (unit 1)
         )
@@ -2860,7 +2860,7 @@
     (pin "1" (uuid b1c77bb6-226e-4d1b-864b-24daa24b85a9))
     (pin "2" (uuid 378ae806-96d2-4b31-9bb0-e986a2fcdca3))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D12") (unit 1)
         )
@@ -2886,7 +2886,7 @@
     (pin "1" (uuid 652d76b1-f508-4143-b770-0648423faf24))
     (pin "2" (uuid a83e9b42-b4c8-4dbc-b01c-f24bf29a713b))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP31") (unit 1)
         )
@@ -2912,7 +2912,7 @@
     (pin "1" (uuid 858669d9-222c-4e86-806b-c68bc5498786))
     (pin "2" (uuid 600815ee-e63f-495e-82e4-ac7d65a02613))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP10") (unit 1)
         )
@@ -2938,7 +2938,7 @@
     (pin "1" (uuid 051ec7a1-d97f-4a49-8053-e4cc46e8499b))
     (pin "2" (uuid 362d9d38-d7ed-43ed-9b60-c8eb8a41e4fb))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D18") (unit 1)
         )
@@ -2964,7 +2964,7 @@
     (pin "1" (uuid 74ec83f3-a2a5-491d-889e-3f4563571e70))
     (pin "2" (uuid 0b0c49bf-88cf-4252-aeb4-bc40263a6b78))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "JP21") (unit 1)
         )
@@ -2990,7 +2990,7 @@
     (pin "1" (uuid 8de9d775-81b0-47b8-8656-9490a6a11652))
     (pin "2" (uuid c2f7fed9-a4b3-4218-a9ac-2b724efc0b8c))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D1") (unit 1)
         )
@@ -3016,7 +3016,7 @@
     (pin "1" (uuid 7eb21f72-cc14-420d-b4df-172ec2a81f7d))
     (pin "2" (uuid c9de5abb-3742-4496-827e-68920d06506f))
     (instances
-      (project "htpm_control_display"
+      (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
           (reference "D15") (unit 1)
         )
