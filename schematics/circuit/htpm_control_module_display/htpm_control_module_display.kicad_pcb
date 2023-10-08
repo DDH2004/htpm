@@ -2389,7 +2389,7 @@
         (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp dd2a90a8-ef9c-4b2e-8d1c-19cbd7f3b75b)
     )
-    (fp_text value "MountingHole" (at 0 3.5) (layer "F.Fab")
+    (fp_text value "MountingHole" (at 0 3.5) (layer "F.Fab") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp f5246b65-1b9a-4277-8d3c-f70c24153b57)
     )
@@ -3498,7 +3498,7 @@
         (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 78a07c29-02b1-4af0-bbbe-a2a60c4d013d)
     )
-    (fp_text value "MountingHole" (at 0 3.5) (layer "F.Fab")
+    (fp_text value "MountingHole" (at 0 3.5) (layer "F.Fab") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 40759dc2-c9c4-40e3-8306-c894686aad16)
     )
