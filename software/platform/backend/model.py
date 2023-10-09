@@ -62,3 +62,19 @@ class Player(db.Model):
 		self.team = team
 		self.name = name
 
+class Challenge(db.Model):
+
+	__tablename__ = "challenges"
+
+	id = db.Column(db.Integer, primary_key=True)
+	points = db.Column(db.Integer, unique=False, nullable=False) #points not unique since multiple teams can have same amount of points, nullable true becasue players can have zero points?
+	title = db.Column(db.String(256), unique=False, nullable=False) #challenge names should be different? challenges should all have titles.and
+	instructions = db.Column(db.String(256), unique=False, nullable=False)#challenge instruct. should be differnet, challenge needs to have instructions
+
+	def __init__(self, points, title, instructions):
+
+		assert points != None and title != None and instructions != None
+
+		self.points = points
+		self.title = title
+		self.instructions = instructions
