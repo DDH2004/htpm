@@ -1,3 +1,4 @@
+import json
 import requests
 from termcolor import colored
 
@@ -18,3 +19,20 @@ def create(name: str, password: str) -> bool:
 
     return True
 
+def read() -> bool:
+
+    r = requests.get(
+        "http://localhost:8080/api/manage/teams",
+    )
+
+    if r.status_code != 200:
+        print(f"API returned an HTTP {r.status_code}, expected 200.")
+        return False
+
+    if r.content != b'{"Status":"Success!","Teams":["Foobar"]}\n':
+        print("API returned:")
+        print(r.content)
+        print("Expected:")
+        print(b'{"Status":"Success!","Teams":["Foobar"]}\n')
+
+    return True

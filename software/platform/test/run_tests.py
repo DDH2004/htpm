@@ -7,7 +7,8 @@ from tests import *
 
 # Display name, function pointer, args
 TESTS = [
-    ("teams/create", teams.create, {"name": "Foobar", "password": "Example"})
+    ("teams/create", teams.create, {"name": "Foobar", "password": "Example"}),
+    ("teams/read", teams.read, {})
 ]
 
 def main():
