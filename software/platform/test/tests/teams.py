@@ -36,3 +36,21 @@ def read() -> bool:
         print(b'{"Status":"Success!","Teams":["Foobar"]}\n')
 
     return True
+
+def update(name: str, newName: str, newPassword: str) -> bool:
+
+    r = requests.post(
+        "http://localhost:8080/api/manage/teams",
+        data={
+            "action": "update",
+            "name": name,
+            "newName": newName,
+            "newPassword": newPassword 
+        }
+    )
+
+    if r.status_code != 200:
+        print(f"API returned an HTTP {r.status_code}, expected 200.")
+        return False
+
+    return True
