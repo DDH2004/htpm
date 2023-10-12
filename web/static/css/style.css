@@ -1,0 +1,16 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+    --text-main: #FFFFFF;
+    --text-sub: #42DA3F;
+
+    --background-color: #262826;
+    --outline-color: #B0B0B0;
+    --header-color: #7B8F7B;
+}
+
+body{
+    background-color: var(--background-color);
+    color: var(--text-main);
+}

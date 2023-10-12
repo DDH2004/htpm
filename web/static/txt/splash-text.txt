@@ -1,0 +1,30 @@
+$ whoami
+player
+$ pwd
+/home/player/local-learn-day-2023/
+$ ls
+README.txt
+$ cat README.txt
+===========================================
+ HACK THE PLANET! MINI
+
+ Welcome to Hack the Planet! mini (HTP!m).
+
+ Get into teams of 4. Meet new people.
+ At least one person per team must have access to a *NIX shell.
+ Kali Linux live USBs are supplied. 1 per team.
+
+ Linux is REQUIRED for Wi-Fi hacking. macOS may work, but support
+ is limited. Windows is very unlikely to work. Use your Kali USB.
+
+ 4 targets. 2 hours.
+ The goal is to get >=1.
+
+ Ready? Go.
+ https://htpm23.shawnd.xyz
+
+ - skat
+===========================================
+$
+
+Connection terminated.
