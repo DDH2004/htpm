@@ -476,6 +476,58 @@
         )
       )
     )
+    (symbol "power:+5V" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
+      (property "Reference" "#PWR" (at 0 -3.81 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Value" "+5V" (at 0 3.556 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "global power" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Power symbol creates a global label with name \"+5V\"" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "+5V_0_1"
+        (polyline
+          (pts
+            (xy -0.762 1.27)
+            (xy 0 2.54)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy 0 0)
+            (xy 0 2.54)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy 0 2.54)
+            (xy 0.762 1.27)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+      )
+      (symbol "+5V_1_1"
+        (pin power_in line (at 0 0 90) (length 0) hide
+          (name "+5V" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
     (symbol "power:GND" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
       (property "Reference" "#PWR" (at 0 -6.35 0)
         (effects (font (size 1.27 1.27)) hide)
@@ -1489,7 +1541,7 @@
     (property "Reference" "R1" (at 58.42 123.19 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "400Ω" (at 58.42 125.73 0)
+    (property "Value" "10kΩ" (at 58.42 125.73 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" (at 54.102 124.46 90)
@@ -1498,8 +1550,8 @@
     (property "Datasheet" "~" (at 55.88 124.46 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 64f8fed0-fdfd-413e-88b4-1662320c4ccb))
-    (pin "2" (uuid 3c7d0b87-0085-4fc8-9719-57115d57f84e))
+    (pin "1" (uuid 8b91c997-161d-46d4-b351-2259db87f142))
+    (pin "2" (uuid 9091e0b9-d146-4343-9fa7-34e1b41d2118))
     (instances
       (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
@@ -1722,7 +1774,7 @@
     (property "Reference" "R2" (at 106.68 124.46 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "400Ω" (at 106.68 127 0)
+    (property "Value" "10kΩ" (at 106.68 127 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" (at 102.362 125.73 90)
@@ -1731,8 +1783,8 @@
     (property "Datasheet" "~" (at 104.14 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid b5992274-d8aa-4f38-a741-00c0670b23c6))
-    (pin "2" (uuid 0a6527b8-4296-4e09-8610-534c4e717024))
+    (pin "1" (uuid 9fc432af-43e8-4691-ad55-2ad0d8247458))
+    (pin "2" (uuid c375c70f-73f5-4d61-89f6-c83547456a7c))
     (instances
       (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
@@ -1846,13 +1898,13 @@
     )
   )
 
-  (symbol (lib_id "power:+3.3V") (at 232.41 113.03 180) (unit 1)
+  (symbol (lib_id "power:+5V") (at 232.41 113.03 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 49dd9443-b407-4a13-97ed-b69c7bb82057)
-    (property "Reference" "#PWR04" (at 232.41 109.22 0)
+    (property "Reference" "#PWR0101" (at 232.41 109.22 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "+3.3V" (at 232.41 118.11 0)
+    (property "Value" "+5V" (at 232.41 118.11 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "" (at 232.41 113.03 0)
@@ -1865,7 +1917,7 @@
     (instances
       (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
-          (reference "#PWR04") (unit 1)
+          (reference "#PWR0101") (unit 1)
         )
       )
     )
@@ -2323,7 +2375,7 @@
     (property "Reference" "R4" (at 128.27 49.53 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "400Ω" (at 127 52.07 0)
+    (property "Value" "10kΩ" (at 127 52.07 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" (at 134.112 50.8 90)
@@ -2504,7 +2556,7 @@
     (property "Reference" "R3" (at 220.98 49.53 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "400Ω" (at 219.71 52.07 0)
+    (property "Value" "10kΩ" (at 219.71 52.07 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" (at 226.822 50.8 90)
@@ -2689,12 +2741,12 @@
 
   (symbol (lib_id "power:+3.3V") (at 220.98 35.56 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
-    (uuid cf9c93e7-7530-498f-aa94-78ef2887e6d7)
-    (property "Reference" "#PWR02" (at 220.98 39.37 0)
+    (uuid cfc5a9ec-b9eb-4860-a045-c5a97a53a628)
+    (property "Reference" "#PWR06" (at 220.98 39.37 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "+3.3V" (at 220.98 30.48 0)
-      (effects (font (size 1.27 1.27)))
+    (property "Value" "+5V" (at 222.25 35.56 0)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "" (at 220.98 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -2702,11 +2754,11 @@
     (property "Datasheet" "" (at 220.98 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid db51ae46-b96a-4222-854f-72be55c42e2c))
+    (pin "1" (uuid 6500e367-5587-47e1-bba5-7adff51b8980))
     (instances
       (project "htpm_control_module_display"
         (path "/5d804e4b-c61d-47d3-9254-644534119e0a"
-          (reference "#PWR02") (unit 1)
+          (reference "#PWR06") (unit 1)
         )
       )
     )
