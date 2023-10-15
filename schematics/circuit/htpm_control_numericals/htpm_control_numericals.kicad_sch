@@ -3332,7 +3332,7 @@
     (uuid ff2c243e-aa87-4ce5-a425-e1149099df54)
   )
 
-  (text "VCC" (at 58.42 38.1 0)
+  (text "5V" (at 58.42 38.1 0)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 27006ace-4417-4831-ba1a-0d8c71cddd32)
   )
