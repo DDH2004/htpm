@@ -1,7 +1,5 @@
 #include <ESP8266WiFi.h>
-
-#define SSID "Family Wi-Fi"
-#define PASS "butterfly!"
+#include "config.h"
 
 void setup()
 {
