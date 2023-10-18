@@ -7,6 +7,9 @@ from app import db
 from flask_login import UserMixin
 from typing import Union
 
+from datetime import datetime
+import pytz
+
 class Team(UserMixin, db.Model):
 
 	__tablename__ = "teams"
@@ -78,3 +81,21 @@ class Challenge(db.Model):
 		self.points = points
 		self.title = title
 		self.instructions = instructions
+
+class Solve(db.Model):
+	__tablename__ = "solves"
+
+	id = db.Column(db.Integer, primary_key=True)
+
+	pacific = pytz.timezone('America/Los_Angeles')
+
+	team = db.Column(db.Integer, db.ForeignKey(Team.id), unique=False, nullable=False)
+	challenge = db.Column(db.String(256), db.ForeignKey(Challenge.id), unique=False, nullable=False)
+	timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+	def __init__(self, team, challenge, timestamp=None):
+		assert team != None and challenge != None 
+	
+		self.team = team
+		self.challenge = challenge
+		self.timestamp = timestamp if timestamp else pacific.localize(datetime.utcnow())

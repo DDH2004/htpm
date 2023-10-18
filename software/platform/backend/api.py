@@ -128,3 +128,63 @@ def post_challenges():
 def get_challenges():
 	results = [f"{c.points} {c.title} {c.instructions}" for c in Challenge.query.all()]
 	return {"Status": "Success!", "Challenge": results}, 200
+
+
+@app.route("/api/manage/solves", methods=["POST"])
+def post_solves():
+	pacific = pytz.timezone('America/Los_Angeles')
+
+	if request.form["action"] == "create":
+		try:
+			timestamp = datetime.strptime(request.form["timestamp"], '%m-%d-%Y %H:%M')
+			timestamp = pacific.localize(timestamp)
+			solve = Solve(request.form["team"], request.form["challenge"], timestamp)
+			db.session.add(solve)
+			db.session.commit()
+		except Exception as e:
+			print(e)
+			return {"Status": "Failure."}, 400
+		return {"Status": "Success!"}, 200
+
+	elif request.form["action"] == "update":
+		try:
+			timestamp = datetime.strptime(request.form["timestamp"], '%m-%d-%Y %H:%M')
+			timestamp = pacific.localize(timestamp)
+			newTimestamp = datetime.strptime(request.form["newTimestamp"], '%m-%d-%Y %H:%M')
+			newTimestamp = pacific.localize(newTimestamp)
+
+			solve = Solve.query.filter_by(team=request.form["team"], challenge=request.form["challenge"], timestamp=timestamp).first()
+			solve.team = request.form["newTeam"]
+			solve.challenge = request.form["newChallenge"]
+			solve.timestamp = newTimestamp
+			db.session.add(solve)
+			db.session.commit()
+		except Exception as e:
+			print(e)
+			return {"Status": "Failure."}, 400
+		return {"Status": "Success"}, 200
+
+	elif request.form["action"] == "delete":
+		try:
+			timestamp = datetime.strptime(request.form["timestamp"], '%m-%d-%Y %H:%M')
+			solve = Solve.query.filter_by(team=request.form["team"], challenge=request.form["challenge"], timestamp=timestamp).first()
+			db.session.delete(solve)
+			db.session.commit()
+		except:
+			return {"Status": "Failure. Delete error"}, 400
+		return {"Status": "Success!"}, 200
+
+@app.route("/api/manage/solves", methods=["GET"])
+def get_solves():
+	results = [f"{s.team} {s.challenge} {s.timestamp}" for s in Solve.query.all()]
+	return {"Status": "Success!", "Solves": results}, 200
+
+
+
+@app.route("/api/info", methods=["GET"])
+def get_info():
+	teamsresult = get_teams()
+	playersresult = get_players()
+	challengesresult = get_challenges()
+	solvesresult = get_solves()
+	return [teamsresult, playersresult, challengesresult, solvesresult]
