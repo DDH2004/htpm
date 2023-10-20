@@ -8,9 +8,43 @@
     --background-color: #262826;
     --outline-color: #B0B0B0;
     --header-color: #7B8F7B;
+    --top-header-color: #2A7429;
+
+    --login-box-color: #363D36;
 }
 
 body{
+    margin: 0;
+
     background-color: var(--background-color);
     color: var(--text-main);
+
+    font-family: 'Share Tech Mono';
+}
+
+.htext {
+    color: var(--text-sub);
+}
+
+/* LOGIN PAGE */
+
+#login-header {
+    width: 100%;
+    padding: 12px;
+    font-size: 20px;
+    background-color: var(--top-header-color);
+}
+
+#login-time {
+    position: fixed;
+    right: 12px;
+}
+
+#login-box {
+    position: absolute;
+    width: 28%;
+    height: 42%;
+
+    background-color: var(--login-box-color);
+    border-radius: 10px;
 }
