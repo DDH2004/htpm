@@ -1,15 +1,32 @@
-/* Import Google Font */
+/* Import Google Font 'Share Tech Mono' */
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 :root {
+    /* Main color for text */
     --text-main: #FFFFFF;
+
+    /* Sub color for text */
     --text-sub: #42DA3F;
 
-    --background-color: #262826;
-    --outline-color: #B0B0B0;
-    --header-color: #7B8F7B;
-    --top-header-color: #2A7429;
+    /* Placeholder text color in input fields */
+    --text-placeholder: #8C9189;
 
+    /* Main side-wide background color */
+    --background-color: #262826;
+
+    /* Header bar and button color for login & main page */
+    --background-sub: #2A7429;
+
+    /* Input field background color */
+    --background-input: #6B7168;
+
+    /* Border color for divisions on main page */
+    --outline-color: #B0B0B0;
+
+    /* Header color for tabs on main page */
+    --header-color: #7B8F7B;
+    
+    /* Body color for the login box */
     --login-box-color: #363D36;
 }
 
@@ -17,13 +34,43 @@ body{
     margin: 0;
 
     background-color: var(--background-color);
-    color: var(--text-main);
 
-    font-family: 'Share Tech Mono';
+    font-family: 'Share Tech Mono', sans-serif;
+    color: var(--text-main);
 }
 
-.htext {
+input[type=text] {
+    font-family: 'Share Tech Mono', sans-serif;
+    color: var(--text-main);
+}
+
+input[type=password] {
+    color: var(--text-main);
+}
+
+.htext { /* todo */
     color: var(--text-sub);
+}
+
+.header-text {
+    font-size: 24px;
+}
+
+.login-field {
+    margin-top: 10px;
+    border-style: none;
+    border-radius: 10px;
+    width: 314px;
+    padding: 10px;
+    
+    background-color: var(--background-input);
+}
+
+::placeholder {
+    opacity: 1;
+
+    font-family: 'Share Tech Mono', sans-serif;
+    color: var(--text-placeholder);
 }
 
 /* LOGIN PAGE */
@@ -31,8 +78,10 @@ body{
 #login-header {
     width: 100%;
     padding: 12px;
+
+    background-color: var(--background-sub);
+
     font-size: 20px;
-    background-color: var(--top-header-color);
 }
 
 #login-time {
@@ -41,10 +90,39 @@ body{
 }
 
 #login-box {
-    position: absolute;
-    width: 28%;
-    height: 42%;
-
-    background-color: var(--login-box-color);
+    position: relative;
+    top: 100px;
+    
+    margin: auto;
+    padding: 20px;
+    width: 400px;
     border-radius: 10px;
+    
+    background-color: var(--login-box-color);
+
+    text-align: center;
+}
+
+#login-form {
+    margin: 40px 0px 60px 0px;
+}
+
+#login-submit {
+    margin: 0px 100px;
+    padding: 9px 40px;
+    border-style: none;
+    border-radius: 10px;
+
+    background-color: var(--background-sub);
+
+    text-align: center;
+    font-family: 'Share Tech Mono', sans-serif;
+    font-size: 24px;
+    color: var(--text-main);
+}
+
+#login-no-account {
+    margin: 20px 0px;
+    
+    font-size: 16px;
 }
