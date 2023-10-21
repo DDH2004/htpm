@@ -13,7 +13,7 @@ function setTime() {
     var time = today.getHours() + ":" + minutes;
 
     /* Sets page time to current time */
-    $("#login-time").html(date + " " + time);
+    $(".current-time").html(date + " " + time);
 }
 
 /* Time is updated every 5 seconds */
