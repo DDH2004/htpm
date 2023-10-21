@@ -56,6 +56,15 @@ input[type=password] {
     font-size: 24px;
 }
 
+.page-header {
+    width: 100%;
+    padding: 12px;
+
+    background-color: var(--background-sub);
+
+    font-size: 20px;
+}
+
 .login-field {
     margin-top: 10px;
     border-style: none;
@@ -74,15 +83,6 @@ input[type=password] {
 }
 
 /* LOGIN PAGE */
-
-#login-header {
-    width: 100%;
-    padding: 12px;
-
-    background-color: var(--background-sub);
-
-    font-size: 20px;
-}
 
 #login-time {
     position: fixed;
