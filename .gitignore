@@ -1,3 +1,6 @@
 *.FCBak
 *-backups/
 *.swp
+*.ovpn
+secrets/
+*.lck
