@@ -131,12 +131,14 @@ input[type=password] {
 .box-grid {
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
 }
 
 /* HOME: The flexbox layout inside of column 1 to create two subcolumns */
 .primary-display {
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 
 /* HOME: The child boxes of the flexbox layout */
