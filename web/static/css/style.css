@@ -90,6 +90,7 @@ input[type=password] {
     margin: 30px;
 }
 
+/* SPLASH: Button for proceeding to the login page from splash */
 .proceed-button {
     display: block;
     width: 23%;
@@ -206,6 +207,7 @@ input[type=password] {
     width: 70%;
 }
 
+/* HOME: Names of the targets in the left column */
 div.target-name {
     margin-bottom: 3px;
     border-style: none;
