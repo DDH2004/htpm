@@ -12,15 +12,51 @@
     <!-- Import the webpage's stylesheet -->
     <link rel="stylesheet" href="../static/css/style.css" />
 
+    <!-- Import JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- Import JS file for text animation -->
     <script src="../static/js/splash-anim.js" defer></script>
 
 </head>
 
-<body onload="typeWriter()">
-    <div id="splash-text">This is the starter text: </div>
+<body>
 
-    <div class="button" id="proceed-button">PROCEED TO HTPM23</div>
+    <div class="splash-text">
+
+        <div class="line splash-input invisible">$ whoami</div>
+        <div class="line splash-output invisible">player</div>
+        <div class="line splash-input invisible">$ pwd</div>
+        <div class="line splash-output invisible">/home/player/local-learn-day-2023/</div>
+        <div class="line splash-input invisible">$ ls</div>
+        <div class="line splash-output invisible">README.txt</div>
+        <div class="line splash-input invisible">$ cat README.txt</div>
+        <div class="line splash-output invisible">=========================================== <br>
+            HACK THE PLANET! MINI <br>
+            <br>
+            Welcome to Hack the Planet! mini (HTP!m).<br>
+            <br>
+            Get into teams of 4. Meet new people.<br>
+            At least one person per team must have access to a *NIX shell.<br>
+            Kali Linux live USBs are supplied. 1 per team.<br>
+            <br>
+            Linux is REQUIRED for Wi-Fi hacking. macOS may work, but support<br>
+            is limited. Windows is very unlikely to work. Use your Kali USB.<br>
+            <br>
+            4 targets. 2 hours.<br>
+            The goal is to get >=1.<br>
+            <br>
+            Ready? Go.<br>
+            https://htpm23.shawnd.xyz <br>
+            <br>
+            - skat<br>
+           ===========================================</div>
+        <div class="line splash-input invisible">$</div>
+        <div class="line splash-output invisible">Connection terminated.</div>
+        <div class="proceed-button" id="splash-proceed"><h1>PROCEED TO HTPM23</h1></div>
+
+    </div>
+
 </body>
 
 </html>

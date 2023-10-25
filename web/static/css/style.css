@@ -75,9 +75,33 @@ input[type=password] {
     color: var(--text-main);
 }
 
-/* SPLASH: to be modified */
-.htext { /* todo */
+/* SPLASH: For modifying the opacity of the text for a typewriter effect */
+.invisible {
+    opacity: 0.0;
+}
+
+/* SPLASH: The green text "output" from the "system" on the splash page */
+.splash-output {
     color: var(--text-sub);
+}
+
+/* SPLASH: The box containing the page contents */
+.splash-text {
+    margin: 30px;
+}
+
+.proceed-button {
+    display: block;
+    width: 23%;
+    margin: auto;
+    padding: 10px;
+
+    border-style: none;
+    border-radius: 10px;
+
+    background-color: var(--login-box-color);
+
+    text-align: center;
 }
 
 /* LOGIN & HOME: The main header at the top of the page */
