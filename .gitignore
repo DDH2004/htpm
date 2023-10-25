@@ -1,4 +1,9 @@
 *.FCBak
+*-backups/
+*.swp
+*.ovpn
+secrets/
+*.lck
 
 # macOS
 .DS_Store
