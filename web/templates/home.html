@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Hack the Planet! mini</title>
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="../static/css/style.css" />
+
+    <!-- Import JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Imports JS to display time -->
+    <script src="../static/js/display-time.js" defer></script>
+
+</head>
+
+<body>
+
+    <div class="page-header">
+
+        <!-- Edit team name by modifying item with ID team-name -->
+        <span>Hack the Planet! mini // Team <span id="team-name">Foobarbers</span></span>
+
+        <span class="current-time">LOADING TIME...</span>
+
+    </div>
+
+    <div class="box-grid">
+
+        <div class="column-1">
+
+            <div class="sub-header"><h2>EVENT</h2></div>
+
+            <div class="box-contents">
+
+                <p>HTP!m is an interactive computer hacking event hosted at HackMerced’s Local Learn Day 2023. Teams of 4+ will engage in guided, real-life computer hacking exercises in a safe and controlled environment.</p>
+            
+            </div>
+
+            <div class="sub-header"><h2>PRIMARY DISPLAY</h2></div>
+
+            <div class="primary-display">
+
+                <div class="column-3">
+
+                    <div class="box-contents">
+
+                        <!-- To modify status, change innerHTML and switch CSS class -->
+                        <div class="target-name">TARGET: House</div>
+                        <div id="target-1-status" class="target-start">START</div>
+
+                        <div class="target-name">TARGET: Railroad</div>
+                        <div id="target-2-status" class="target-active">ACTIVE</div>
+
+                        <div class="target-name">TARGET: Satellite</div>
+                        <div id="target-3-status" class="target-complete">COMPLETE</div>
+
+                        <div class="target-name">TARGET: Power Grid</div>
+                        <div id="target-4-status" class="target-resume">RESUME</div>
+
+                    </div>
+
+                </div>
+
+                <div class="column-4">
+
+                    <div class="box-contents">
+
+                        <h1>TARGET: Railroad</h1>
+                        <ol>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                            <li>Consectetur adipiscing elit.</li>
+                            <li>Sed feugiat leo vel elit efficitur?</li>
+                        </ol>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="column-2">
+
+            <div class="sub-header"><h2>INFO</h2></div>
+
+            <div class="box-contents">
+
+                <p>Team Foobarbers</p>
+
+                <ul id="team-member-list">
+
+                    <!-- Temporary placeholder names; replace with data-->
+                    <li>John Doe</li>
+                    <li>Jane Doe</li>
+                    <li>Billy Bob</li>
+                    <li>Joe Biden</li>
+
+                </ul>
+            </div>
+
+            <div class="sub-header"><h2>LOGS</h2></div>
+            
+            <div class="box-contents">
+
+                <!-- Temporary logs; replace with data -->
+                <p>13:10<br>Team Bread has hacked the railroad.</p><br>
+                <p>13:01<br>Team Foobarbers has hacked the satellite.</p><br>
+
+            </div>
+            
+        </div>
+
+    </div>
+
+</body>
+
+</html>

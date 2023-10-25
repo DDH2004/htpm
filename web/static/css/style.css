@@ -1,0 +1,320 @@
+/* Import Google Font 'Share Tech Mono' */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+    /* Main color for text */
+    --text-main: #FFFFFF;
+
+    /* Sub color for text */
+    --text-sub: #42DA3F;
+
+    /* Text color for light backgrounds */
+    --text-invert: #000000;
+
+    /* Placeholder text color in input fields */
+    --text-placeholder: #8C9189;
+
+    /* Main side-wide background color */
+    --background-color: #262826;
+
+    /* Header bar and button color for login & main page */
+    --background-sub: #2A7429;
+
+    /* Input field background color */
+    --background-input: #6B7168;
+
+    /* Border color for divisions on main page */
+    --outline-color: #B0B0B0;
+
+    /* Header color for tabs on main page */
+    --header-color: #7B8F7B;
+    
+    /* Body color for the login box */
+    --login-box-color: #363D36;
+
+    /* Status color for "START" in primary display */
+    --status-start: #B0B0B0;
+
+    /* Status color for "ACTIVE" in primary display */
+    --status-active: #FFE27C;
+
+    /* Status color for "COMPLETE" in primary display */
+    /* Modified from prototype to pass web accessibility standards for contrast 
+     * Prev - 3.62:1 (Fails WCAG AA/AAA) | Current - 7.33:1 (Passes all) */
+    --status-complete: #3FAE3D;
+
+    /* Status color for "RESUME" in primary display */
+    --status-resume: #EAEAEA;
+}
+
+body{
+    margin: 0;
+
+    background-color: var(--background-color);
+
+    font-family: 'Share Tech Mono', sans-serif;
+    color: var(--text-main);
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+/* LOGIN: The user input username text */
+input[type=text] {
+    font-family: 'Share Tech Mono', sans-serif;
+    color: var(--text-main);
+}
+
+/* LOGIN: The user input password text (censored) */
+input[type=password] {
+    color: var(--text-main);
+}
+
+/* SPLASH: For modifying the opacity of the text for a typewriter effect */
+.invisible {
+    opacity: 0.0;
+}
+
+/* SPLASH: The green text "output" from the "system" on the splash page */
+.splash-output {
+    color: var(--text-sub);
+}
+
+/* SPLASH: The box containing the page contents */
+.splash-text {
+    margin: 30px;
+}
+
+/* SPLASH: Button for proceeding to the login page from splash */
+.proceed-button {
+    display: block;
+    width: 23%;
+    margin: auto;
+    padding: 10px;
+
+    border-style: none;
+    border-radius: 10px;
+
+    background-color: var(--login-box-color);
+
+    text-align: center;
+}
+
+/* LOGIN & HOME: The main header at the top of the page */
+.page-header {
+    position: fixed;
+    width: 100%;
+    padding: 12px;
+
+    background-color: var(--background-sub);
+
+    font-size: 20px;
+}
+
+/* HOME: The secondary headers for categories on the home page */
+.sub-header {
+    border-style: solid;
+    border-color: var(--outline-color);
+    border-width: 1px 0px;
+
+    width: 100%;
+    height: 42px;
+
+    padding: 0px 7px;
+    
+    background-color: var(--header-color);
+}
+
+/* HOME: The h2 text inside of the subheaders on the home page */
+.sub-header h2 {
+    margin-top: 10px;
+}
+
+/* LOGIN: The input fields for username and password */
+.login-field {
+    margin-top: 10px;
+    border-style: none;
+    border-radius: 10px;
+    width: 314px;
+    padding: 10px;
+    
+    background-color: var(--background-input);
+}
+
+/* LOGIN & HOME: The time displayed in the upper right corner */
+.current-time {
+    position: fixed;
+    right: 12px;
+}
+
+/* HOME: The parent flexbox layout for the home page */
+.box-grid {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+/* HOME: The flexbox layout inside of column 1 to create two subcolumns */
+.primary-display {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+/* HOME: The child boxes of the flexbox layout */
+.box-grid > div {
+    border-style: solid;
+    border-color: var(--outline-color);
+    border-width: 1px;
+    box-sizing: border-box;
+}
+
+/* HOME: The contents of the flexbox boxes */
+.box-contents {
+    padding: 15px 30px;
+}
+
+/* HOME: The child flexbox layout for the left main column */
+.column-1 {
+    overflow: hidden;
+
+    margin-top: 47px;
+    width: 70%;
+}
+
+/* HOME: The child flexbox layout for the right main column */
+.column-2 {
+    margin-top: 47px;
+    width: 30%;
+}
+
+/* HOME: The child flexbox layout for the left column of column 1 */
+.column-3 {
+    border-style: solid;
+    border-color: var(--outline-color);
+    border-width: 0px 1px 0px 0px;
+
+    width: 30%;
+}
+
+/* HOME: The child flexbox layout for the right column of column 1 */
+.column-4 {
+    width: 70%;
+}
+
+/* HOME: Names of the targets in the left column */
+div.target-name {
+    margin-bottom: 3px;
+    border-style: none;
+}
+
+/* HOME: A status marker for the targets */
+div.target-start {
+    margin-bottom: 25px;
+    padding: 5px;
+    border-style: none;
+    border-radius: 10px;
+    width: 50%;
+    
+    background-color: var(--status-start);
+
+    text-align: center;
+    color: var(--text-invert);
+}
+
+/* HOME: A status marker for the targets */
+div.target-active {
+    margin-bottom: 25px;
+    padding: 5px;
+    border-style: none;
+    border-radius: 10px;
+    width: 50%;
+    
+    background-color: var(--status-active);
+
+    text-align: center;
+    color: var(--text-invert);
+}
+
+/* HOME: A status marker for the targets */
+div.target-complete {
+    margin-bottom: 25px;
+    padding: 5px;
+    border-style: none;
+    border-radius: 10px;
+    width: 50%;
+    
+    background-color: var(--status-complete);
+
+    text-align: center;
+    color: var(--text-invert);
+}
+
+/* HOME: A status marker for the targets */
+div.target-resume {
+    margin-bottom: 25px;
+    padding: 5px;
+    border-style: none;
+    border-radius: 10px;
+    width: 50%;
+    
+    background-color: var(--status-resume);
+
+    text-align: center;
+    color: var(--text-invert);
+}
+
+/* LOGIN: The placeholder text in the input fields */
+::placeholder {
+    opacity: 1;
+
+    font-family: 'Share Tech Mono', sans-serif;
+    color: var(--text-placeholder);
+}
+
+/* LOGIN: The login panel in the center of the screen */
+#login-box {
+    position: relative;
+    top: 100px;
+    
+    margin: auto;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    
+    background-color: var(--login-box-color);
+
+    text-align: center;
+}
+
+/* LOGIN: The invisible box containing both login fields */
+#login-form {
+    margin: 40px 0px 60px 0px;
+}
+
+/* LOGIN: Submit button for the login form */
+#login-submit {
+    margin: 0px 100px;
+    padding: 9px 40px;
+    border-style: none;
+    border-radius: 10px;
+
+    background-color: var(--background-sub);
+
+    text-align: center;
+    font-family: 'Share Tech Mono', sans-serif;
+    font-size: 24px;
+    color: var(--text-main);
+}
+
+/* LOGIN: Text that says "I don't have an account" */
+#login-no-account {
+    margin: 20px 0px;
+    
+    font-size: 16px;
+}
