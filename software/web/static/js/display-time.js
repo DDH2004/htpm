@@ -16,5 +16,5 @@ function setTime() {
     $(".current-time").html(date + " " + time);
 }
 
-/* Time is updated every 5 seconds */
-setInterval(setTime, 5000);
+/* Time is updated every 1 second */
+setInterval(setTime, 1000);
