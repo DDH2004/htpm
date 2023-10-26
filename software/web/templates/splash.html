@@ -36,14 +36,14 @@
             <br>
             Welcome to Hack the Planet! mini (HTP!m).<br>
             <br>
-            Get into teams of 4. Meet new people.<br>
+            Get into teams of >=4. Meet new people.<br>
             At least one person per team must have access to a *NIX shell.<br>
             Kali Linux live USBs are supplied. 1 per team.<br>
             <br>
             Linux is REQUIRED for Wi-Fi hacking. macOS may work, but support<br>
             is limited. Windows is very unlikely to work. Use your Kali USB.<br>
             <br>
-            4 targets. 2 hours.<br>
+            3 targets. 2 hours.<br>
             The goal is to get >=1.<br>
             <br>
             Ready? Go.<br>
@@ -51,11 +51,15 @@
             <br>
             - skat<br>
            ===========================================</div>
-        <div class="line splash-input invisible">$</div>
+        <div class="line splash-input invisible">$ exit</div>
         <div class="line splash-output invisible">Connection terminated.</div>
         <div class="proceed-button" id="splash-proceed"><h1>PROCEED TO HTPM23</h1></div>
 
     </div>
+
+    <script>
+        $("#splash-proceed").click(function() { window.location = "/login"; });
+    </script>
 
 </body>
 

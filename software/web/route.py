@@ -8,7 +8,8 @@ def index():
 
 	if current_user.is_authenticated:
 		return redirect(url_for("application"))
-	return render_template("index.html")
+
+	return render_template("splash.html")
 
 @app.route("/app", methods=["GET"])
 @login_required

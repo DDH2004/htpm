@@ -94,7 +94,6 @@ input[type=password] {
 .proceed-button {
     display: block;
     width: 23%;
-    margin: auto;
     padding: 10px;
 
     border-style: none;
@@ -103,6 +102,15 @@ input[type=password] {
     background-color: var(--login-box-color);
 
     text-align: center;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: 5%;
+}
+.proceed-button:hover {
+    cursor: pointer;
 }
 
 /* LOGIN & HOME: The main header at the top of the page */
