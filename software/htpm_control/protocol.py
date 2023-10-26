@@ -1,3 +1,12 @@
+import time
+
+# MTYPE values
+PING = 0
+ACK = 1
+ACTUATION = 2
+TMASK = 3
+TSET = 4
+
 class Message:
 
 	preamble  = None
@@ -37,6 +46,41 @@ class Message:
 
 		data = [self.length, *self.data]
 		return Message.crc8(data) == self.crc
+
+	def from_bytes(content: bytes):
+		"""
+		Return a particular Message child type given raw content bytes. Return
+		False if failed.
+		"""
+
+		# Validate the preamble.
+		if content[:3] != bytearray([0x33, 0x79, 0x20]):
+			return False
+
+		# Validate the length and end marker.
+		if content[5+content[3]:] != bytearray([0x20, 0x79, 0x33]):
+			return False
+
+		# Validate the CRC.
+		if Message.crc8(content[3:-4]) != content[-4]:
+			return False
+
+		# Trim the excess now that it's validated.
+		content = content[4:-4]
+
+		mtype = int(content[0] >> 4)
+		mid = int(((content[0] & 0x0F) << 8) | content[1])
+		src = int(content[2])
+		dst = int(content[3])
+
+		if mtype == PING:
+			return Ping(mid, src, dst)
+
+		elif mtype == ACK:
+			ver = int(content[4])
+			return Ack(mid, src, dst, ver)
+
+		return False
 
 	def crc8(data: list):
 		
@@ -84,7 +128,7 @@ class Ping(Message):
 		self.dst    = dst
 		super().__init__(Message.make([
 			(self.mtype << 4) | (self.mid >> 8),
-			self.mid,
+			self.mid & 0xFF,
 			self.src, self.dst
 		]))
 
@@ -93,6 +137,25 @@ class Ping(Message):
 		print(f"MID    : {self.mid}")
 		print(f"SRC    : {self.src}")
 		print(f"DST    : {self.dst}")
+
+	def send(pi, bus: int, addr: int, mid: int, attempts=4, delay=0.1):
+		"""
+		Send a PING and return the ACK, or False if failed.
+		"""
+
+		for i in range(attempts):
+
+			handle = pi.i2c_open(bus, addr)
+			pi.i2c_write_i2c_block_data(handle, 0, Ping(mid, 0, addr).bytes())
+			reply = pi.i2c_read_device(handle, 13)[1]
+			message = Message.from_bytes(reply)
+			if type(message) is not Ack:
+				time.sleep(delay)
+				continue
+			pi.i2c_close(handle)
+			return message
+
+		return False
 
 class Ack(Message):
 
@@ -148,6 +211,25 @@ class Actuation(Message):
 		print(f"SRC    : {self.src}")
 		print(f"DST    : {self.dst}")
 		print(f"VALUES : {self.values}")
+
+	def send(pi, bus: int, addr: int, mid: int, values: int, attempts=4, delay=0.1):
+		"""
+		Send an ACTUATION and return the ACK, or False if failed.
+		"""
+
+		for i in range(attempts):
+
+			handle = pi.i2c_open(bus, addr)
+			pi.i2c_write_i2c_block_data(handle, 0, Actuation(mid, 0, addr, values).bytes())
+			reply = pi.i2c_read_device(handle, 13)[1]
+			message = Message.from_bytes(reply)
+			if type(message) is not Ack:
+				time.sleep(delay)
+				continue
+			pi.i2c_close(handle)
+			return message
+
+		return False
 
 class Tmask(Message):
 

@@ -15,17 +15,12 @@ void sr_init()
 	pinMode(SRCLK , OUTPUT);
 }
 
+/* Shift out 16 bits. */
 void sr_write(uint16_t val)
 {
 	digitalWrite(RCLK, LOW);
-
-	for (uint8_t i = 0; i < 16; i++)
-	{
-		digitalWrite(SER, (val >> i) & 1);
-		digitalWrite(SRCLK, HIGH);
-		digitalWrite(SRCLK, LOW);
-	}
-
+	shiftOut(SER, SRCLK, LSBFIRST, val & 0xFF);
+	shiftOut(SER, SRCLK, LSBFIRST, val >> 8);
 	digitalWrite(RCLK, HIGH);
 }
 

@@ -1,6 +1,8 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
+#include "output.h"
+
 enum MTYPE
 {
 	PING,
@@ -25,6 +27,27 @@ byte _d(byte *message, uint8_t i)
 	return message[4+i] & 0xFF;
 }
 
+/* CRC8 calculation given a buffer, starting index, and ending index. Both the
+   start and end indices are inclusive. */
+uint8_t crc8(byte *buffer, uint8_t start, uint8_t end)
+{
+	uint8_t crc = 0x00;
+
+	for (uint8_t i = 0; i < 1+end-start; i++)
+	{
+		crc ^= _b(buffer,start+i);
+		for (uint8_t j = 0; j < 8; j++)
+		{
+			if (crc & 0x80)
+				crc = (uint8_t)((crc << 1) ^ 0x07);
+			else
+				crc <<= 1;
+		}
+	}
+
+	return crc;
+}
+
 /* Validate a message's preamble, end marker, length, and CRC. Return true if
    the message was successfully validated. */
 bool validate(char *buffer, uint8_t len)
@@ -39,25 +62,11 @@ bool validate(char *buffer, uint8_t len)
 		if (_b(buffer,5+_b(buffer,3)+i) != _b(END_MARKER,i))
 			return false;
 
-	/* Calculate the CRC-8 with standard CRC8 parameters. See crccalc.com */
-	uint8_t crc = 0x00;
-	for (uint8_t i = 0; i < 1+_b(buffer,3); i++)
-	{
-		crc ^= _b(buffer,3+i);
-		for (uint8_t j = 0; j < 8; j++)
-		{
-			if (crc & 0x80)
-				crc = (uint8_t)((crc << 1) ^ 0x07);
-			else
-				crc <<= 1;
-		}
-	}
-
 	/* Check if the message was corrupted. */
-	if (crc != _b(buffer,4+_b(buffer,3)))
+	if (crc8(buffer, 3, 3+_b(buffer,3)) != _b(buffer,4+_b(buffer,3)))
 		return false;
 
-	/* Finally make sure that it's a valid MTYPE with the right length. */
+	/* Finally, make sure that it's a valid MTYPE with the right length. */
 	switch (_b(buffer,4) >> 4)
 	{
 		case PING:
@@ -77,7 +86,7 @@ bool validate(char *buffer, uint8_t len)
 				return false;
 			break;
 		case TSET:
-			if (_b(buffer,3) != 0x11)
+			if (_b(buffer,3) != 0x0d)
 				return false;
 			break;
 		default:
@@ -95,94 +104,75 @@ void debug_print(byte *message)
 	switch (_b(message,4) >> 4)
 	{
 		case PING:
-			Serial.println("------------------------");
-			Serial.println("MTYPE ....... PING");
-			Serial.print("MID ......... ");
-			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
-			Serial.println(buffer32);
-			Serial.print("SRC ......... ");
-			Serial.println(_d(message,2));
-			Serial.print("DST ......... ");
-			Serial.println(_d(message,3));
-			Serial.println("------------------------");
+			Serial.println("MTYPE ..... PING");
+			Serial.print("MID ....... ");
+			Serial.println(((_b(message,4) & 0x0F) << 8) | _b(message,5));
+			Serial.print("SRC ....... ");
+			p2hexln(_b(message,6));
+			Serial.print("DST ....... ");
+			p2hexln(_b(message,7));
 			break;
 		case ACK:
-			Serial.println("------------------------");
-			Serial.println("MTYPE ....... ACK");
-			Serial.print("MID ......... ");
-			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
-			Serial.println(buffer32);
-			Serial.print("SRC ......... ");
-			Serial.println(_d(message,2));
-			Serial.print("DST ......... ");
-			Serial.println(_d(message,3));
-			Serial.print("VER ......... ");
-			Serial.println(_d(message,4));
-			Serial.println("------------------------");
+			Serial.println("MTYPE ..... ACK");
+			Serial.print("MID ....... ");
+			Serial.println(((_b(message,4) & 0x0F) << 8) | _b(message,5));
+			Serial.print("SRC ....... ");
+			p2hexln(_b(message,6));
+			Serial.print("DST ....... ");
+			p2hexln(_b(message,7));
+			Serial.print("VER ....... ");
+			Serial.println(_b(message,8));
 			break;
 		case ACTUATION:
-			Serial.println("------------------------");
-			Serial.println("MTYPE........ ACTUATION");
-			Serial.print("MID ......... ");
-			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
-			Serial.println(buffer32);
-			Serial.print("SRC ......... ");
-			Serial.println(_d(message,2));
-			Serial.print("DST ......... ");
-			Serial.println(_d(message,3));
-			Serial.print("VALUES ...... 0x");
-			buffer32 = (_d(message,4) << 8) | _d(message,5) & 0xFFFF;
-			Serial.println(buffer32, HEX);
-			Serial.println("------------------------");
+			Serial.println("MTYPE ..... ACTUATION");
+			Serial.print("MID ....... ");
+			Serial.println(((_b(message,4) & 0x0F) << 8) | _b(message,5));
+			Serial.print("SRC ....... ");
+			p2hexln(_b(message,6));
+			Serial.print("DST ....... ");
+			p2hexln(_b(message,7));
+			buffer32 = (uint16_t)_b(message,8) << 8 | _b(message,9);
+			Serial.print("VALUES .... ");
+			Serial.println(buffer32, BIN);
 			break;
 		case TMASK:
-			Serial.println("------------------------");
-			Serial.println("MTYPE........ TMASK");
-			Serial.print("MID ......... ");
-			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
-			Serial.println(buffer32);
-			Serial.print("SRC ......... ");
-			Serial.println(_d(message,2));
-			Serial.print("DST ......... ");
-			Serial.println(_d(message,3));
-			Serial.print("MASK ........ 0x");
-			buffer32 = (_d(message,4) << 8) | _d(message,5) & 0xFFFF;
-			Serial.println(buffer32, HEX);
-			Serial.println("------------------------");
 			break;
 		case TSET:
-			Serial.println("------------------------");
-			Serial.println("MTYPE........ TSET");
-			Serial.print("MID ......... ");
-			buffer32 = ((_d(message,0) & 0xF0) << 4) & _d(message,1);
-			Serial.println(buffer32);
-			Serial.print("SRC ......... ");
-			Serial.println(_d(message,2));
-			Serial.print("DST ......... ");
-			Serial.println(_d(message,3));
-			Serial.print("INDEX ....... ");
-			Serial.println(_d(message,4));
-			Serial.print("DELAY ....... ");
-			buffer32  = (uint32_t)_d(message,5) << 24 | (uint32_t)_d(message,6) << 16
-				| (uint32_t)_d(message,7) << 8 | (uint32_t)_d(message,8);
-			Serial.println(buffer32);
-			Serial.print("OFF_TIME .... ");
-			buffer32  = (uint32_t)_d(message,9) << 24 | (uint32_t)_d(message,10) << 16
-				| (uint32_t)_d(message,11) << 8 | (uint32_t)_d(message,12);
-			Serial.println(buffer32);
-			Serial.print("ON_TIME ..... ");
-			buffer32  = (uint32_t)_d(message,13) << 24 | (uint32_t)_d(message,14) << 16
-				| (uint32_t)_d(message,15) << 8 | (uint32_t)_d(message,16);
-			buffer32  = (uint32_t)_d(message,13) << 24;
-			buffer32 |= (uint32_t)_d(message,14) << 16;
-			buffer32 |= (uint32_t)_d(message,15) << 8;
-			buffer32 |= (uint32_t)_d(message,16);
-			Serial.println(buffer32);
-			Serial.println("------------------------");
 			break;
 		default:
 			Serial.println("Invalid MTYPE.");
 	}
+}
+
+void send_ack(uint16_t mid, uint8_t src, uint8_t dst, uint8_t ver)
+{
+	byte message[13];
+
+	for (uint8_t i = 0; i < 3; i++)
+		message[i] = PREAMBLE[i];
+
+	for (uint8_t i = 10; i < 13; i++)
+		message[i] = END_MARKER[i-10];
+
+	/* Length */
+	message[3] = 5;
+
+	/* MTYPE and MID */
+	message[4] = (1 << 4) | (mid >> 8);
+	message[5] = mid & 0xFF;
+
+	/* SRC, DST, and VER */
+	message[6] = src;
+	message[7] = dst;
+	message[8] = ver;
+
+	/* CRC */
+	message[9] = crc8(message, 3, 8);
+
+	Serial.println(">>>>>>>>");
+	debug_print(message);
+
+	Wire.write(message, 13);
 }
 
 #endif
