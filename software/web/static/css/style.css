@@ -330,3 +330,10 @@ div.target-resume {
 #login-no-account:hover {
     cursor: pointer;
 }
+
+/* LOGOUT: URL to /logout */
+#logout {
+    margin-left: 1em;
+    text-decoration: none;
+    color: blue;
+}
