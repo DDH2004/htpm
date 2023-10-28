@@ -18,7 +18,8 @@ from model import *
 with app.app_context():
 	db.create_all()
 
-	# If the admin team doesn't exist, auto-make a default one.
+# If the admin team doesn't exist, auto-make a default one.
+with app.app_context():
 	if Team.query.filter_by(username="admin").first() == None:
 		account = Team("admin", "12345678")
 		db.session.add(account)
