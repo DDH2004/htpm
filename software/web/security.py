@@ -5,10 +5,20 @@ from app import *
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
-from flask_login import LoginManager, login_required, login_user, logout_user
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
-admin = Admin(app, name='microblog', template_mode='bootstrap3')
-admin.add_view(ModelView(Team, db.session))
+admin = Admin(app, name="HTP!m Admin Interface", template_mode="bootstrap3")
+
+class AdminModelView(ModelView):
+
+	def is_accessible(self):
+		return current_user.is_authenticated and current_user.username == "admin"
+
+	def inaccessible_callback(self, name, **kwargs):
+		# Redirect to login page if user doesn't have access.
+		return redirect(url_for("login", next=request.url))
+
+admin.add_view(AdminModelView(Team, db.session))
 
 loginManager = LoginManager()
 loginManager.init_app(app)
