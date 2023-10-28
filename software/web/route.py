@@ -19,7 +19,8 @@ def loginPage():
 @login_required
 def application():
 
-	return render_template("home.html",
-		username=current_user.username
-	)
+	if current_user.username == "admin":
+		return redirect("/admin")
+
+	return render_template("home.html")
 

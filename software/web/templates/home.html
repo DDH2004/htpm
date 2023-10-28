@@ -24,7 +24,6 @@
 
     <div class="page-header">
 
-        <!-- Edit team name by modifying item with ID team-name -->
         <span>Hack the Planet! mini // Team <span id="team-name">{{ current_user.username }}</span></span>
 
         <span class="current-time">LOADING TIME...</span>
@@ -93,7 +92,7 @@
 
             <div class="box-contents">
 
-                <p>Team Foobarbers</p>
+                <p>Team {{ current_user.username }}</p>
 
                 <ul id="team-member-list">
 
