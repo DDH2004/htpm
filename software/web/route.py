@@ -19,5 +19,7 @@ def loginPage():
 @login_required
 def application():
 
-	return render_template("home.html")
+	return render_template("home.html",
+		username=current_user.username
+	)
 
