@@ -1,14 +1,9 @@
 from __future__ import annotations
 
-import bcrypt
-
 from app import db
 
 from flask_login import UserMixin
 from typing import Union
-
-from datetime import datetime
-import pytz
 
 class Team(UserMixin, db.Model):
 
@@ -16,19 +11,21 @@ class Team(UserMixin, db.Model):
 
 	id = db.Column(db.Integer, primary_key=True)
 
-	name = db.Column(db.String(256), unique=True , nullable=False)
+	username = db.Column(db.String(256), unique=True , nullable=False)
 	password = db.Column(db.String(256), unique=False, nullable=False)
 
-	def __init__(self, name, password, userType=1):
+	def __init__(self, username, password, userType=1):
 
-		# Name and password cannot be blank.
-		assert name != None and password != None
+		# Username and password cannot be blank.
+		assert username != None and password != None
 
 		# Name must be unique.
-		assert Team.query.filter_by(name=name).first() == None
+		assert Team.query.filter_by(username=username).first() == None
 
-		self.name = name
-		self.password = bcrypt.hashpw(password.encode(), bcrypt.gensalt(4))
+		# Passwords are not hashed because they are not sensitive. The users do
+		# not define their passwords. Passwords are login PINs made by admins.
+		self.username = username
+		self.password = password
 
 	def get_team(id: int) -> Union[Team, None]:
 		"""
@@ -37,14 +34,14 @@ class Team(UserMixin, db.Model):
 
 		return Team.query.filter_by(id=id).first()
 
-	def login(name: str, password: str) -> Union[User, None]:
+	def login(username: str, password: str) -> Union[User, None]:
 		"""
 		Log into an account.
 		"""
 
 		try:
-			assert (team:=Team.query.filter_by(name=name).first()) != None
-			assert bcrypt.checkpw(password.encode(), team.password)
+			assert (team:=Team.query.filter_by(username=username).first()) != None
+			assert password == team.password
 			return team
 		except:
 			return None
@@ -87,15 +84,13 @@ class Solve(db.Model):
 
 	id = db.Column(db.Integer, primary_key=True)
 
-	pacific = pytz.timezone('America/Los_Angeles')
-
-	team = db.Column(db.Integer, db.ForeignKey(Team.id), unique=False, nullable=False)
-	challenge = db.Column(db.String(256), db.ForeignKey(Challenge.id), unique=False, nullable=False)
-	timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+	team      = db.Column(db.Integer, db.ForeignKey(Team.id)     , unique=False, nullable=False)
+	challenge = db.Column(db.Integer, db.ForeignKey(Challenge.id), unique=False, nullable=False)
+	timestamp = db.Column(db.Integer, unique=False, nullable=False)
 
 	def __init__(self, team, challenge, timestamp=None):
 		assert team != None and challenge != None 
 	
 		self.team = team
 		self.challenge = challenge
-		self.timestamp = timestamp if timestamp else pacific.localize(datetime.utcnow())
+#		self.timestamp = timestamp if timestamp else pacific.localize(datetime.utcnow())

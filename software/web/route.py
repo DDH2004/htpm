@@ -19,5 +19,5 @@ def loginPage():
 @login_required
 def application():
 
-	return render_template("app.html")
+	return render_template("home.html")
 

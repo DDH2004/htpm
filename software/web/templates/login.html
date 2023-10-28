@@ -33,13 +33,19 @@
 
         <h2>LOGIN</h2>
 
-        <div id="login-form">
-            <input type="text" class="login-field" id="user" name="user" placeholder="username"><br>
-            <input type="password" class="login-field" id="password" name="password" placeholder="password"><br>
-        </div>
+		<form action="/login" method="post">
+			<div id="login-form">
+				<input type="text" class="login-field" id="username" name="username" placeholder="username"><br>
+				<input type="password" class="login-field" id="password" name="password" placeholder="password"><br>
+			</div>
 
-        <input type="submit" value="PROCEED" id="login-submit"><br>
-        <div id="login-no-account">I don't have an account.</div>
+			<input type="submit" value="PROCEED" id="login-submit"><br>
+			<div id="login-no-account">I don't have an account.</div>
+		</form>
+
+		{% if failed %}
+			<p style="color: red">Login failed.</p>
+		{% endif %}
 
     </div>
 
