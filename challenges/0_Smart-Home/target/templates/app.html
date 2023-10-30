@@ -16,7 +16,7 @@
                     <h1>Smart Automations</h1>
                     <input class="button-add" type="submit" value="Add Rule"/>
                     <div class="text-automations">
-                        Your rules: </br>
+                        Your rules: <br>
                         After 
                         <input class="button-show" type="submit" value="12:00 AM"/>
                         turn off
@@ -35,9 +35,13 @@
                     </div>
                 </div>
                 <div class="box2">
-                    <div class="text-remote">Left home but forgot to turn your lights off? Not to worry, we got your back! 
-                    </br>Remote Disable</div>
-                    <input class="button-disable-lights" type="submit" value="Disable Lights"/>
+                    <div class="text-remote">
+                        <p>Left home but forgot to turn your lights off? Not to worry, we got your back!</p>
+                        <br>Remote Disable
+                    </div>
+                    <form action="/api/lights/disable" method="post">
+					    <input class="button-disable-lights" type="submit" value="Disable Lights"/>
+                    </form>
                 </div>
             </div>
             <div class="box3">
