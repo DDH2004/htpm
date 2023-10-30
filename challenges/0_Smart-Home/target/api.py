@@ -9,3 +9,11 @@ def disable_lights():
 
 	return redirect(url_for("application"))
 
+@app.route("/api/notes/update", methods=["POST"])
+@login_required
+def update_notes():
+
+	with open("./states/notes.txt", "w") as f:
+		f.write(request.form["notes"])
+
+	return redirect(url_for("application"))

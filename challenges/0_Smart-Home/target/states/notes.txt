@@ -1,0 +1,1 @@
+TODO: add rule for stove turnoff when not in use.

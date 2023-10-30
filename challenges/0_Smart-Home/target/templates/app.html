@@ -47,9 +47,10 @@
             <div class="box3">
                 <h1>Notes</h1>
            
-                <textarea class="textbox" rows="3" cols="50">
-                </textarea>
-                <input class="button-update" type="submit" value="Update"/>
+                <textarea class="textbox" rows="3" cols="50" form="notes-update-form" name="notes">{{ notesData }}</textarea>
+                <form action="/api/notes/update" method="post" id="notes-update-form">
+                    <input class="button-update" type="submit" value="Update"/>
+                </form>
             </div>
         </div>
     </body>
