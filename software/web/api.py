@@ -212,3 +212,19 @@ def get_solves():
 	results = [(s.team,s.challenge,s.timestamp) for s in Solve.query.all()]
 	return {"Status": "Success!", "Solves": results}, 200
 
+@app.route("/api/info", methods=["GET"])
+@login_required
+def get_info():
+
+	results = []
+
+	for s in Solve.query.all():
+		team = Team.query.get(s.team).username
+		challenge = Challenge.query.get(s.challenge).title
+		results.append({
+			"time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(s.timestamp)),
+			"content": f"{team} has has hacked the {challenge}"
+		})
+
+	return {"Status": "Success!", "Results": results}, 200
+

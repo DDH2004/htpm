@@ -10,13 +10,16 @@
     <title>Hack the Planet! mini</title>
 
     <!-- Import the webpage's stylesheet -->
-    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
 
     <!-- Import JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!-- Imports JS to display time -->
-    <script src="../static/js/display-time.js" defer></script>
+    <script src="/static/js/display-time.js" defer></script>
+
+    <!-- Imports JS to update logs -->
+    <script src="/static/js/update-logs.js" defer></script>
 
 </head>
 
@@ -107,11 +110,8 @@
             <div class="sub-header"><h2>LOGS</h2></div>
             
             <div class="box-contents">
-
-                <!-- Temporary logs; replace with data -->
-                <p>13:10<br>Team Bread has hacked the railroad.</p><br>
-                <p>13:01<br>Team Foobarbers has hacked the satellite.</p><br>
-
+				<div id="logs">
+				</div>
             </div>
             
         </div>
