@@ -223,7 +223,7 @@ def get_info():
 		challenge = Challenge.query.get(s.challenge).title
 		results.append({
 			"time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(s.timestamp)),
-			"content": f"{team} has has hacked the {challenge}"
+			"content": f"Team {team} has hacked the {challenge}."
 		})
 
 	return {"Status": "Success!", "Results": results[::-1]}, 200
