@@ -130,7 +130,6 @@ input[type=password] {
     border-color: var(--outline-color);
     border-width: 1px 0px;
 
-    width: 100%;
     height: 42px;
 
     padding: 0px 7px;
@@ -336,4 +335,12 @@ div.target-resume {
     margin-left: 1em;
     text-decoration: none;
     color: blue;
+}
+
+/* LOGS: The stream of logs */
+#logs {
+    margin: 0;
+    overflow: scroll;
+    margin-right: -30px;
+    padding-right: 30px;
 }
