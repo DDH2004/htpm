@@ -9,6 +9,8 @@ def get_action():
 
 	print("Actions:")
 	print()
+	print(" 0. Quit.")
+	print()
 	print(" 1. Create a team.")
 	print(" 2. Read all teams.")
 	print(" 3. Update a team.")
@@ -34,7 +36,7 @@ def get_action():
 		action = input("> ")
 		try:
 			action = int(action)
-			assert action >= 1 and action <= 16
+			assert action >= 0 and action <= 16
 			return action
 		except:
 			pass
@@ -221,8 +223,13 @@ def main():
 	cookies = r.cookies
 
 	while True:
-		action = get_action()
-		do(action, cookies)
+		try:
+			action = get_action()
+			if action == 0:
+				return
+			do(action, cookies)
+		except:
+			pass
 		print("\n" + "-"*64 + "\n")
 
 if __name__ == "__main__":
