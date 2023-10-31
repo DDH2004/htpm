@@ -19,6 +19,9 @@ class AdminModelView(ModelView):
 		return redirect(url_for("login", next=request.url))
 
 admin.add_view(AdminModelView(Team, db.session))
+admin.add_view(AdminModelView(Player, db.session))
+admin.add_view(AdminModelView(Challenge, db.session))
+admin.add_view(AdminModelView(Solve, db.session))
 
 loginManager = LoginManager()
 loginManager.init_app(app)
