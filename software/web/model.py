@@ -14,7 +14,7 @@ class Team(UserMixin, db.Model):
 	username = db.Column(db.String(256), unique=True , nullable=False)
 	password = db.Column(db.String(256), unique=False, nullable=False)
 
-	def __init__(self, username, password, userType=1):
+	def __init__(self, username, password):
 
 		# Username and password cannot be blank.
 		assert username != None and password != None
