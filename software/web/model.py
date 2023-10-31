@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from app import db
 
+import time
 from flask_login import UserMixin
 from typing import Union
 
@@ -54,10 +55,16 @@ class Player(db.Model):
 	team = db.Column(db.Integer, db.ForeignKey(Team.id), unique=False, nullable=False)
 	name = db.Column(db.String(256), unique=False, nullable=False)
 
-	def __init__(self, team: int, name: str):
+	def __init__(self, team: str, name: str):
 
 		assert team != None and name != None
-		self.team = team
+
+		# Find the team.
+		t = Team.query.filter_by(username=team).first()
+
+		assert t != None
+
+		self.team = t.id
 		self.name = name
 
 class Challenge(db.Model):
@@ -85,8 +92,18 @@ class Solve(db.Model):
 	def __init__(self, team, challenge, timestamp=None):
 
 		assert team != None and challenge != None 
-		self.team = team
-		self.challenge = challenge
+
+		# Find the team.
+		t = Team.query.filter_by(username=team).first()
+
+		# Find the challenge.
+		c = Challenge.query.filter_by(title=challenge).first()
+
+		self.team = t.id
+		self.challenge = c.id
+
+		# Make sure the solve doesn't already exist.
+		assert Solve.query.filter_by(team=t.id, challenge=c.id).first() == None
 
 		if timestamp == None:
 			self.timestamp = int(time.time())

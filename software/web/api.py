@@ -1,5 +1,7 @@
 from app import *
 
+import time
+
 from flask_login import current_user, login_required
 
 @app.route("/api/manage/teams", methods=["POST"])
@@ -72,8 +74,9 @@ def post_players():
 
 	elif request.form["action"] == "update":
 		try:
-			player = Player.query.filter_by(team=request.form["team"], name=request.form["name"]).first()
-			player.team = request.form["newTeam"]
+			t = Team.query.filter_by(username=request.form["team"]).first()
+			player = Player.query.filter_by(team=t.id, name=request.form["name"]).first()
+			player.team = Team.query.filter_by(username=request.form["newTeam"]).first().id
 			player.name = request.form["newName"]
 			db.session.add(player)
 			db.session.commit()
@@ -84,7 +87,8 @@ def post_players():
 
 	elif request.form["action"] == "delete":
 		try:
-			player = Player.query.filter_by(team=request.form["team"], name=request.form["name"]).first()
+			t = Team.query.filter_by(username=request.form["team"]).first()
+			player = Player.query.filter_by(team=t.id, name=request.form["name"]).first()
 			db.session.delete(player)
 			db.session.commit()
 		except Exception as e:
@@ -102,7 +106,7 @@ def get_players():
 		return redirect(url_for("login"))
 
 	results = [(p.team,p.name) for p in Player.query.all()]
-	return {"Status": "Success!", "Teams": results}, 200
+	return {"Status": "Success!", "Players": results}, 200
 
 @app.route("/api/manage/challenges", methods=["POST"])
 @login_required
@@ -163,8 +167,7 @@ def post_solves():
 
 	if request.form["action"] == "create":
 		try:
-			timestamp = request.form["timestamp"]
-			solve = Solve(request.form["team"], request.form["challenge"], timestamp)
+			solve = Solve(request.form["team"], request.form["challenge"])
 			db.session.add(solve)
 			db.session.commit()
 		except Exception as e:
@@ -174,10 +177,12 @@ def post_solves():
 
 	elif request.form["action"] == "update":
 		try:
-			solve = Solve.query.filter_by(team=request.form["team"], challenge=request.form["challenge"]).first()
-			solve.team = request.form["newTeam"]
-			solve.challenge = request.form["newChallenge"]
-			solve.timestamp = request.form["newTimestamp"]
+			t = Team.query.filter_by(username=request.form["team"]).first()
+			c = Challenge.query.filter_by(title=request.form["challenge"]).first()
+			solve = Solve.query.filter_by(team=t.id, challenge=c.id).first()
+			solve.team = Team.query.filter_by(username=request.form["newTeam"]).first().id
+			solve.challenge = Challenge.query.filter_by(title=request.form["newChallenge"]).first().id
+			solve.timestamp = int(time.time())
 			db.session.add(solve)
 			db.session.commit()
 		except Exception as e:
@@ -187,8 +192,9 @@ def post_solves():
 
 	elif request.form["action"] == "delete":
 		try:
-			timestamp = datetime.strptime(request.form["timestamp"], '%m-%d-%Y %H:%M')
-			solve = Solve.query.filter_by(team=request.form["team"], challenge=request.form["challenge"]).first()
+			t = Team.query.filter_by(username=request.form["team"]).first()
+			c = Challenge.query.filter_by(title=request.form["challenge"]).first()
+			solve = Solve.query.filter_by(team=t.id, challenge=c.id).first()
 			db.session.delete(solve)
 			db.session.commit()
 		except Exception as e:
