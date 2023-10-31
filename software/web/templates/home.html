@@ -97,10 +97,9 @@
                 <ul id="team-member-list">
 
                     <!-- Temporary placeholder names; replace with data-->
-                    <li>John Doe</li>
-                    <li>Jane Doe</li>
-                    <li>Billy Bob</li>
-                    <li>Joe Biden</li>
+					{% for player in players %}
+						<li>{{ player }}</li>
+					{% endfor %}
 
                 </ul>
             </div>

@@ -22,5 +22,10 @@ def application():
 	if current_user.username == "admin":
 		return redirect("/admin")
 
-	return render_template("home.html")
+	players = [p.name for p in Player.query.filter_by(team=current_user.id).all()]
+
+	return render_template(
+		"home.html",
+		players=players
+	)
 
