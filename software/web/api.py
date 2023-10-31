@@ -1,14 +1,21 @@
 from app import *
 
+from flask_login import current_user, login_required
+
 @app.route("/api/manage/teams", methods=["POST"])
+@login_required
 def post_teams():
+
+	if current_user.username != "admin":
+		return redirect(url_for("login"))
 
 	if request.form["action"] == "create":
 		try:
 			team = Team(request.form["name"], request.form["password"])
 			db.session.add(team)
 			db.session.commit()
-		except:
+		except Exception as e:
+			print(e)
 			return {"Status": "Failure."}, 400
 		return {"Status": "Success!"}, 200
 
@@ -16,10 +23,11 @@ def post_teams():
 		try:
 			team = Team.query.filter_by(name=request.form["name"]).first()
 			team.name = request.form["newName"]
-			team.password = bcrypt.hashpw(request.form["newPassword"].encode(), bcrypt.gensalt(4))
+			team.password = request.form["newPassword"]
 			db.session.add(team)
 			db.session.commit()
-		except:
+		except Exception as e:
+			print(e)
 			return {"Status": "Failure."}, 400
 		return {"Status": "Success!"}, 200
 
@@ -28,20 +36,29 @@ def post_teams():
 			team = Team.query.filter_by(name=request.form["name"]).first()
 			db.session.delete(team)
 			db.session.commit()
-		except:
+		except Exception as e:
+			print(e)
 			return {"Status": "Failure."}, 400
 		return {"Status": "Success!"}, 200
 
 	return {"Status": "Failure."}, 400
 
 @app.route("/api/manage/teams", methods=["GET"])
+@login_required
 def get_teams():
 
-	results = [t.name for t in Team.query.all()]
+	if current_user.username != "admin":
+		return redirect(url_for("login"))
+
+	results = [(t.id, t.name, t.password) for t in Team.query.all()]
 	return {"Status": "Success!", "Teams": results}, 200
 
 @app.route("/api/manage/players", methods=["POST"])
+@login_required
 def post_players():
+
+	if current_user.username != "admin":
+		return redirect(url_for("login"))
 
 	if request.form["action"] == "create":
 		try:
@@ -60,7 +77,8 @@ def post_players():
 			player.name = request.form["newName"]
 			db.session.add(player)
 			db.session.commit()
-		except:
+		except Exception as e:
+			print(e)
 			return {"Status": "Failure."}, 400
 		return {"Status": "Success!"}, 200
 
@@ -69,75 +87,83 @@ def post_players():
 			player = Player.query.filter_by(team=request.form["team"], name=request.form["name"]).first()
 			db.session.delete(player)
 			db.session.commit()
-		except:
+		except Exception as e:
+			print(e)
 			return {"Status": "Failure."}, 400
 		return {"Status": "Success!"}, 200
 
 	return {"Status": "Failure."}, 400
 
 @app.route("/api/manage/players", methods=["GET"])
+@login_required
 def get_players():
 
-	results = [f"{p.team} {p.name}" for p in Player.query.all()]
+	if current_user.username != "admin":
+		return redirect(url_for("login"))
+
+	results = [(p.team,p.name) for p in Player.query.all()]
 	return {"Status": "Success!", "Teams": results}, 200
 
-
-
 @app.route("/api/manage/challenges", methods=["POST"])
+@login_required
 def post_challenges():
 
+	if current_user.username != "admin":
+		return redirect(url_for("login"))
+
 	if request.form["action"] == "create":
-		print(request.form) 
 		try:
-			challenge = Challenge(request.form["points"], request.form["title"], request.form["instructions"])
+			challenge = Challenge(request.form["title"])
 			db.session.add(challenge)
 			db.session.commit()
 		except Exception as e:
 			print(e)
-			return {"Status": "Failure. create error"}, 400
+			return {"Status": "Failure."}, 400
 		return {"Status": "Success!"}, 200
 		
 	elif request.form["action"] == "update":
 		try:
-			challenge = Challenge.query.filter_by(points=request.form["points"], title=request.form["title"], instructions=request.form["instructions"]).first()
-			if not challenge:
-				return {"Status": "Failure. Challenge not found"}, 404
-			
-			challenge.points = request.form["newPoints"]
+			challenge = Challenge.query.filter_by(title=request.form["title"]).first()
 			challenge.title = request.form["newTitle"]
-			challenge.instructions = request.form["newInstructions"]
 			db.session.add(challenge)
 			db.session.commit()
 		except Exception as e:
 			print(e)
-			return {"Status": "Failure. update error"}, 400
+			return {"Status": "Failure."}, 400
 		return {"Status": "Success!"}, 200
 	
 	elif request.form["action"] == "delete":
 		try:
-			challenge = Challenge.query.filter_by(points=request.form["points"], title=request.form["title"], instructions=request.form["instructions"]).first()
+			challenge = Challenge.query.filter_by(title=request.form["title"]).first()
 			db.session.delete(challenge)
 			db.session.commit()
-		except:
-			return {"Status": "Failure. delete error"}, 400
+		except Exception as e:
+			print(e)
+			return {"Status": "Failure."}, 400
 		return {"Status": "Success!"}, 200
 
-	return {"Status": "Failure. post error"}, 400
+	return {"Status": "Failure."}, 400
 
 @app.route("/api/manage/challenges", methods=["GET"])
+@login_required
 def get_challenges():
-	results = [f"{c.points} {c.title} {c.instructions}" for c in Challenge.query.all()]
-	return {"Status": "Success!", "Challenge": results}, 200
 
+	if current_user.username != "admin":
+		return redirect(url_for("login"))
+
+	results = [c.title for c in Challenge.query.all()]
+	return {"Status": "Success!", "Challenges": results}, 200
 
 @app.route("/api/manage/solves", methods=["POST"])
+@login_required
 def post_solves():
-	pacific = pytz.timezone('America/Los_Angeles')
+
+	if current_user.username != "admin":
+		return redirect(url_for("login"))
 
 	if request.form["action"] == "create":
 		try:
-			timestamp = datetime.strptime(request.form["timestamp"], '%m-%d-%Y %H:%M')
-			timestamp = pacific.localize(timestamp)
+			timestamp = request.form["timestamp"]
 			solve = Solve(request.form["team"], request.form["challenge"], timestamp)
 			db.session.add(solve)
 			db.session.commit()
@@ -148,43 +174,35 @@ def post_solves():
 
 	elif request.form["action"] == "update":
 		try:
-			timestamp = datetime.strptime(request.form["timestamp"], '%m-%d-%Y %H:%M')
-			timestamp = pacific.localize(timestamp)
-			newTimestamp = datetime.strptime(request.form["newTimestamp"], '%m-%d-%Y %H:%M')
-			newTimestamp = pacific.localize(newTimestamp)
-
-			solve = Solve.query.filter_by(team=request.form["team"], challenge=request.form["challenge"], timestamp=timestamp).first()
+			solve = Solve.query.filter_by(team=request.form["team"], challenge=request.form["challenge"]).first()
 			solve.team = request.form["newTeam"]
 			solve.challenge = request.form["newChallenge"]
-			solve.timestamp = newTimestamp
+			solve.timestamp = request.form["newTimestamp"]
 			db.session.add(solve)
 			db.session.commit()
 		except Exception as e:
 			print(e)
 			return {"Status": "Failure."}, 400
-		return {"Status": "Success"}, 200
+		return {"Status": "Success!"}, 200
 
 	elif request.form["action"] == "delete":
 		try:
 			timestamp = datetime.strptime(request.form["timestamp"], '%m-%d-%Y %H:%M')
-			solve = Solve.query.filter_by(team=request.form["team"], challenge=request.form["challenge"], timestamp=timestamp).first()
+			solve = Solve.query.filter_by(team=request.form["team"], challenge=request.form["challenge"]).first()
 			db.session.delete(solve)
 			db.session.commit()
-		except:
-			return {"Status": "Failure. Delete error"}, 400
+		except Exception as e:
+			print(e)
+			return {"Status": "Failure."}, 400
 		return {"Status": "Success!"}, 200
 
 @app.route("/api/manage/solves", methods=["GET"])
+@login_required
 def get_solves():
-	results = [f"{s.team} {s.challenge} {s.timestamp}" for s in Solve.query.all()]
+
+	if current_user.username != "admin":
+		return redirect(url_for("login"))
+
+	results = [(s.team,s.challenge,s.timestamp) for s in Solve.query.all()]
 	return {"Status": "Success!", "Solves": results}, 200
 
-
-
-@app.route("/api/info", methods=["GET"])
-def get_info():
-	teamsresult = get_teams()
-	playersresult = get_players()
-	challengesresult = get_challenges()
-	solvesresult = get_solves()
-	return [teamsresult, playersresult, challengesresult, solvesresult]
