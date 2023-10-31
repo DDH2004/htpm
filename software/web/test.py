@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 
 import json
-import multiprocessing
 import requests
-import time
 
 from termcolor import colored
-
-from app import *
 
 success = lambda s: print(f"{colored('●','green',attrs=['bold'])} {s}")
 failure = lambda s: print(f"{colored('●','red',attrs=['bold'])} {s}")
