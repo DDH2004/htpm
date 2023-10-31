@@ -54,11 +54,9 @@ class Player(db.Model):
 	team = db.Column(db.Integer, db.ForeignKey(Team.id), unique=False, nullable=False)
 	name = db.Column(db.String(256), unique=False, nullable=False)
 
-	def __init__(self, team, name):
+	def __init__(self, team: int, name: str):
 
-		# Team and name cannot be blank.
 		assert team != None and name != None
-
 		self.team = team
 		self.name = name
 
@@ -67,19 +65,15 @@ class Challenge(db.Model):
 	__tablename__ = "challenges"
 
 	id = db.Column(db.Integer, primary_key=True)
-	points = db.Column(db.Integer, unique=False, nullable=False) #points not unique since multiple teams can have same amount of points, nullable true becasue players can have zero points?
-	title = db.Column(db.String(256), unique=False, nullable=False) #challenge names should be different? challenges should all have titles.and
-	instructions = db.Column(db.String(256), unique=False, nullable=False)#challenge instruct. should be differnet, challenge needs to have instructions
+	title = db.Column(db.String(256), unique=True, nullable=False)
 
-	def __init__(self, points, title, instructions):
+	def __init__(self, title: str):
 
-		assert points != None and title != None and instructions != None
-
-		self.points = points
+		assert title != None
 		self.title = title
-		self.instructions = instructions
 
 class Solve(db.Model):
+
 	__tablename__ = "solves"
 
 	id = db.Column(db.Integer, primary_key=True)
@@ -89,8 +83,13 @@ class Solve(db.Model):
 	timestamp = db.Column(db.Integer, unique=False, nullable=False)
 
 	def __init__(self, team, challenge, timestamp=None):
+
 		assert team != None and challenge != None 
-	
 		self.team = team
 		self.challenge = challenge
-#		self.timestamp = timestamp if timestamp else pacific.localize(datetime.utcnow())
+
+		if timestamp == None:
+			self.timestamp = int(time.time())
+		else:
+			self.timestamp = timestamp
+
