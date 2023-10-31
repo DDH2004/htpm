@@ -11,7 +11,7 @@ def post_teams():
 
 	if request.form["action"] == "create":
 		try:
-			team = Team(request.form["name"], request.form["password"])
+			team = Team(request.form["username"], request.form["password"])
 			db.session.add(team)
 			db.session.commit()
 		except Exception as e:
@@ -21,8 +21,8 @@ def post_teams():
 
 	elif request.form["action"] == "update":
 		try:
-			team = Team.query.filter_by(name=request.form["name"]).first()
-			team.name = request.form["newName"]
+			team = Team.query.filter_by(username=request.form["username"]).first()
+			team.username = request.form["newUsername"]
 			team.password = request.form["newPassword"]
 			db.session.add(team)
 			db.session.commit()
@@ -33,7 +33,7 @@ def post_teams():
 
 	elif request.form["action"] == "delete":
 		try:
-			team = Team.query.filter_by(name=request.form["name"]).first()
+			team = Team.query.filter_by(username=request.form["username"]).first()
 			db.session.delete(team)
 			db.session.commit()
 		except Exception as e:
@@ -50,7 +50,7 @@ def get_teams():
 	if current_user.username != "admin":
 		return redirect(url_for("login"))
 
-	results = [(t.id, t.name, t.password) for t in Team.query.all()]
+	results = [(t.id, t.username, t.password) for t in Team.query.all()]
 	return {"Status": "Success!", "Teams": results}, 200
 
 @app.route("/api/manage/players", methods=["POST"])
