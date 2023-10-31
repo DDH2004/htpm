@@ -226,5 +226,5 @@ def get_info():
 			"content": f"{team} has has hacked the {challenge}"
 		})
 
-	return {"Status": "Success!", "Results": results}, 200
+	return {"Status": "Success!", "Results": results[::-1]}, 200
 
