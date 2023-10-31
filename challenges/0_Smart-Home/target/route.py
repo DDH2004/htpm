@@ -14,5 +14,11 @@ def index():
 @login_required
 def application():
 
-	return render_template("app.html")
+	with open("./states/notes.txt", "r") as f:
+		data = f.read()
+
+	return render_template(
+		"app.html",
+		notesData=data
+	)
 
