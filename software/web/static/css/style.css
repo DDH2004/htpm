@@ -340,7 +340,6 @@ div.target-resume {
 /* LOGS: The stream of logs */
 #logs {
     margin: 0;
-    overflow: scroll;
-    margin-right: -30px;
-    padding-right: 30px;
+    overflow: hidden;
+	max-height: calc(100vh - 350px);
 }
