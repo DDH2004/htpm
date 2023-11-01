@@ -18,8 +18,8 @@
     <!-- Imports JS to display time -->
     <script src="/static/js/display-time.js" defer></script>
 
-    <!-- Imports JS to update logs -->
-    <script src="/static/js/update-logs.js" defer></script>
+    <!-- Imports JS to update the page -->
+    <script src="/static/js/update.js" defer></script>
 
 </head>
 
@@ -54,17 +54,15 @@
                     <div class="box-contents">
 
                         <!-- To modify status, change innerHTML and switch CSS class -->
-                        <div class="target-name">TARGET: House</div>
-                        <div id="target-1-status" class="target-start">START</div>
+                        <!-- start/complete (active and resume unused) -->
+                        <div class="target-name">TARGET: Smart House</div>
+                        <div id="target-1-status" class="target-start">Incomplete</div>
 
                         <div class="target-name">TARGET: Railroad</div>
-                        <div id="target-2-status" class="target-active">ACTIVE</div>
-
-                        <div class="target-name">TARGET: Satellite</div>
-                        <div id="target-3-status" class="target-complete">COMPLETE</div>
+                        <div id="target-2-status" class="target-start">Incomplete</div>
 
                         <div class="target-name">TARGET: Power Grid</div>
-                        <div id="target-4-status" class="target-resume">RESUME</div>
+                        <div id="target-3-status" class="target-start">Incomplete</div>
 
                     </div>
 
@@ -72,12 +70,28 @@
 
                 <div class="column-4">
 
-                    <div class="box-contents">
+                    <div id="target-1-contents" class="box-contents">
+
+                        <h1>TARGET: Smart House</h1>
+                        <ol>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                        </ol>
+
+                    </div>
+
+                    <div id="target-2-contents" class="box-contents" hidden>
 
                         <h1>TARGET: Railroad</h1>
                         <ol>
-                            <li>Lorem ipsum dolor sit amet.</li>
                             <li>Consectetur adipiscing elit.</li>
+                        </ol>
+
+                    </div>
+
+                    <div id="target-3-contents" class="box-contents" hidden>
+
+                        <h1>TARGET: Power Grid</h1>
+                        <ol>
                             <li>Sed feugiat leo vel elit efficitur?</li>
                         </ol>
 
@@ -99,10 +113,9 @@
 
                 <ul id="team-member-list">
 
-                    <!-- Temporary placeholder names; replace with data-->
-					{% for player in players %}
-						<li>{{ player }}</li>
-					{% endfor %}
+                    {% for player in players %}
+                        <li>{{ player }}</li>
+                    {% endfor %}
 
                 </ul>
             </div>
@@ -110,8 +123,7 @@
             <div class="sub-header"><h2>LOGS</h2></div>
             
             <div class="box-contents">
-				<div id="logs">
-				</div>
+                <div id="logs"></div>
             </div>
             
         </div>

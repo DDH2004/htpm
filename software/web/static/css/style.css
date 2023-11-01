@@ -343,3 +343,7 @@ div.target-resume {
     overflow: hidden;
 	max-height: calc(100vh - 350px);
 }
+
+.target-start:hover, .target-active:hover, .target-complete:hover {
+    cursor: pointer;
+}

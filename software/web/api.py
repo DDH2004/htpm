@@ -216,15 +216,20 @@ def get_solves():
 @login_required
 def get_info():
 
-	results = []
+	logs = []
 
 	for s in Solve.query.all():
 		team = Team.query.get(s.team).username
 		challenge = Challenge.query.get(s.challenge).title
-		results.append({
+		logs.append({
 			"time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(s.timestamp)),
 			"content": f"Team {team} has hacked the {challenge}."
 		})
 
-	return {"Status": "Success!", "Results": results[::-1]}, 200
+	completion = 0
+	for solve in Solve.query.filter_by(team=current_user.id).all():
+		challenge = Challenge.query.get(solve.challenge)
+		completion |= 0b100 >> (challenge.id-1)
+
+	return {"Status": "Success!", "Logs": logs[::-1], "Completion": completion}, 200
 
