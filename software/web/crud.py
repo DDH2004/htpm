@@ -190,7 +190,7 @@ def do(action: int, cookies: str):
 		newTeam = input("New team: ")
 		newChallenge = input("New challenge: ")
 		post(
-			ENDPOINT+"/api/manage/challenges",
+			ENDPOINT+"/api/manage/solves",
 			cookies=cookies,
 			data={
 				"action": "update",
@@ -204,7 +204,7 @@ def do(action: int, cookies: str):
 		team = input("Team: ")
 		challenge = input("Challenge: ")
 		post(
-			ENDPOINT+"/api/manage/challenges",
+			ENDPOINT+"/api/manage/solves",
 			cookies=cookies,
 			data={"action": "delete", "team": team, "challenge": challenge}
 		)
