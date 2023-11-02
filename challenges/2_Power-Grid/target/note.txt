@@ -1,0 +1,9 @@
+Welcome to ScadaOS, the operating system for SCADA control systems. We hope you
+find our OS to be both secure and functional.
+
+If you need additional support, please go to your ScadaOS customer support
+portal and one of our support agents will be in contact soon.
+
+Thank you for choosing ScadaOS, the super secure solution to super important
+stuff!
+
