@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: t1-htpm-d0
+spec:
+  hostname: davids-workstation
+  containers:
+  - name: t1-htpm-d0
+    image: sjc.vultrcr.com/hacktheplanet/t1-htpm-d0
+    securityContext:
+      capabilities:
+        add: ["NET_ADMIN"]
+
+  # https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  imagePullSecrets:
+  - name: regcred
