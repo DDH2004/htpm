@@ -10,3 +10,7 @@ spec:
     securityContext:
       capabilities:
         add: ["NET_ADMIN"]
+
+  # https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  imagePullSecrets:
+  - name: regcred
