@@ -2,6 +2,7 @@
 *-backups/
 *.swp
 *.lck
+*.ovpn
 
 # macOS
 .DS_Store
