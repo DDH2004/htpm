@@ -1,0 +1,19 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+
+	{% if current_user.username != "admin" %}
+		<div style="margin: 10%;">
+			<h1>Unauthorized Access</h1>
+			<p>You do not have sufficient permissions to view this page.</p>
+			<h3><a href="{{ url_for('login') }}">Log In</a></h3>
+		</div>
+	{% else %}
+		<div style="margin: 10%;">
+			<h1>HTP!m Administrative Panel</h1>
+			<p>Welcome to the HTP!m administrative panel. Here, you can manage the database.</p>
+			<h3><a href="{{ url_for('logout') }}">Logout</a></h3>
+		</div>
+	{% endif %}
+
+{% endblock %}

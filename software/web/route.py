@@ -19,5 +19,13 @@ def loginPage():
 @login_required
 def application():
 
-	return render_template("app.html")
+	if current_user.username == "admin":
+		return redirect("/admin")
+
+	players = [p.name for p in Player.query.filter_by(team=current_user.id).all()]
+
+	return render_template(
+		"home.html",
+		players=players
+	)
 
