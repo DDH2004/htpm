@@ -1,16 +1,17 @@
-# Dockerfile, Image, Container
 FROM ubuntu:22.04
 
-WORKDIR /app/
+COPY inst0@t0-htpm-t0.ovpn /etc/openvpn/client/
+RUN apt-get update && apt-get install -y \
+	openvpn openssh-server \
+	python3-pip python3-venv
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-RUN apt-get update && apt-get install -y python3-pip python3-venv
+WORKDIR /app/
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-COPY target/ /app/
-RUN pip install -Ur /app/requirements.txt
+COPY app/ /app/
+RUN pip install -Ur requirements.txt
 
-WORKDIR /app/
-
-EXPOSE 8080
-CMD [ "python", "main.py", "0.0.0.0", "8080"]
+COPY bootstrap.sh .
+CMD ./bootstrap.sh
