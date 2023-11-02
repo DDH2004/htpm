@@ -87,13 +87,13 @@ void c_shutdown()
 void c_status()
 {
 	puts("Server Status");
-	puts("  56%% cur resource load");
-	puts("  52%% avg resource load");
-	puts("  97%% avg uptime");
+	puts("  56% cur resource load");
+	puts("  52% avg resource load");
+	puts("  97% avg uptime");
 	puts("");
 	puts("Service Status");
-	puts("  24%% cur load");
-	puts("  28%% avg load");
+	puts("  24% cur load");
+	puts("  28% avg load");
 	puts("  OK  distribution");
 	puts("  OK  operations");
 	puts("");
