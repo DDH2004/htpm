@@ -92,7 +92,12 @@ void c_status()
 	puts("  97%% avg uptime");
 	puts("");
 	puts("Service Status");
-	puts("  13%% cur load");
+	puts("  24%% cur load");
+	puts("  28%% avg load");
+	puts("  OK  distribution");
+	puts("  OK  operations");
+	puts("");
+	puts("All systems operational, no fault detected.");
 }
 
 int scadaos_shell()
