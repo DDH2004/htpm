@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: t0-htpm-t0
+spec:
+  hostname: smart-home
+  containers:
+  - name: t0-htpm-t0
+    image: https://sjc.vultrcr.com/hacktheplanet/t0-htpm-t0
+    securityContext:
+      capabilities:
+        add: ["NET_ADMIN"]
