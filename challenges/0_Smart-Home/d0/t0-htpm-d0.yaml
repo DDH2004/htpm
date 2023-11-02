@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: t0-htpm-d0
+spec:
+  hostname: joes-iphone
+  containers:
+  - name: t0-htpm-d0
+    image: sjc.vultrcr.com/hacktheplanet/t0-htpm-d0
+    securityContext:
+      capabilities:
+        add: ["NET_ADMIN"]
+
+  # https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  imagePullSecrets:
+  - name: regcred
