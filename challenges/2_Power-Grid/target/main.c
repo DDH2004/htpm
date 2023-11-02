@@ -100,6 +100,36 @@ void c_status()
 	puts("All systems operational, no fault detected.");
 }
 
+void c_write_err()
+{
+	puts("Usage: write <file> <string>");
+}
+
+void c_write(char *input)
+{
+	char buffer[1024];
+	char *token;
+	FILE *fp;
+
+	token = strtok(input, " ");
+
+	if ((strcmp(token, "note.txt") != 0) || ((fp = fopen(token, "a")) == NULL))
+	{
+		puts("Error: file not found.");
+		return;
+	}
+
+	token = strtok(NULL, "");
+	if (token == NULL)
+		return c_write_err();
+
+	fprintf(fp, token);
+	fprintf(fp, "\n");
+	fclose(fp);
+
+	printf("%ld bytes appended to note.txt.\n", strlen(token)+1);
+}
+
 int scadaos_shell()
 {
 	char command[1024];
@@ -131,10 +161,16 @@ int scadaos_shell()
 		c_shutdown();
 	else if (strcmp(token, "status") == 0)
 		c_status();
-//	else if (strcmp(token, "write") == 0)
-//	{
-//
-//	}
+	else if (strcmp(token, "write") == 0)
+	{
+		token = strtok(NULL, "");
+		if (token == NULL)
+			c_write_err();
+		else
+			c_write(token);
+	}
+	else
+		puts("Unknown command. Enter 'help' for a list of commands.");
 
 	return 0;
 }
