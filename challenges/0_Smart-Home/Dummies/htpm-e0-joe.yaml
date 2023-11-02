@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: htpm-e0-joe
+spec:
+  hostname: JoesIPhone
+  containers:
+  - name: htpm-e0-joe
+    image: 
+    securityContext:
+      capabilities:
+        add: ["NET_ADMIN"]
