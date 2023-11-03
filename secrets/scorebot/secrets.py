@@ -6,4 +6,5 @@ IDENTITY_WORD = {
 	"t0-htpm-t0": "IDENTITY_HERE",
 	"t1-htpm-t0": "IDENTITY_HERE",
 	"t2-htpm-t0": "IDENTITY_HERE",
+	"retrieval": "IDENTITY_HERE",
 }
