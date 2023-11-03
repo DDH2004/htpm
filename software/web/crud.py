@@ -3,7 +3,7 @@
 from requests import get, post
 from getpass import getpass
 
-ENDPOINT = "http://127.0.0.1:8080"
+ENDPOINT = "https://htpm23.shawnd.xyz"
 
 def get_action():
 
@@ -216,7 +216,7 @@ def main():
 	password = getpass("[login] password for admin: ")
 
 	r = post(
-		"http://127.0.0.1:8080/login",
+		ENDPOINT+"/login",
 		data={"username": "admin", "password": password},
 		allow_redirects=False,
 	)
