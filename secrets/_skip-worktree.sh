@@ -10,3 +10,4 @@ git update-index --skip-worktree ../challenges/0_Smart-Home/_firmware/wap/config
 git update-index --skip-worktree ../challenges/2_Power-Grid/_firmware/wap/config.h
 git update-index --skip-worktree ../software/scorebot/secrets.py
 git update-index --skip-worktree ../challenges/0_Smart-Home/t0/scorebot/secrets.py
+git update-index --skip-worktree ../challenges/2_Power-Grid/t0/scorebot/secrets.py
