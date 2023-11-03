@@ -9,6 +9,8 @@ COPY authorized_keys /root/.ssh/
 RUN echo "20" > /tmp/velocity.txt
 RUN touch /tmp/note.txt
 
+COPY app/railroad-manage.py root/
+
 COPY scorebot /scorebot/
 
 COPY bootstrap.sh .
