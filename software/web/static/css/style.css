@@ -353,3 +353,8 @@ code {
     padding: 1px;
     border-radius: 4px;
 }
+
+#target-1-contents, #target-2-contents, #target-3-contents {
+    overflow: scroll;
+	max-height: calc(100vh - 280px);
+}
