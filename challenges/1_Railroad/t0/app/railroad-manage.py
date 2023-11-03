@@ -22,5 +22,7 @@ def main():
 				with open("/tmp/velocity.txt", "w") as f:
 					f.write(str(velocity-5)+"\n")
 
+		print("\n\n\n")
+
 if __name__ == "__main__":
 	main()
