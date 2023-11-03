@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import socket
+import time
+from datetime import datetime
 from threading import Thread
 
 from secrets import *
@@ -26,6 +28,7 @@ def handle(client, address):
 	global state
 
 	print(f"\n\n:: Received connection from {address[0]}:{address[1]}.")
+	print(datetime.utcfromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))
 
 	try:
 		data = client.recv(256).decode("utf-8")
