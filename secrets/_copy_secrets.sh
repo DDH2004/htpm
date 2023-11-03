@@ -11,3 +11,7 @@ cp "vpn/t2/inst2@t2-htpm-t0.ovpn" ../challenges/2_Power-Grid/t0/
 cp "vpn/t2/inst2@t2-htpm-d0.ovpn" ../challenges/2_Power-Grid/d0/
 cp "vpn/t2/inst2@t2-htpm-d1.ovpn" ../challenges/2_Power-Grid/d1/
 cp "vpn/t2/inst2@t2-htpm-d2.ovpn" ../challenges/2_Power-Grid/d2/
+
+echo ":: Copying target WAP secrets."
+cp wap/t0-config.h ../challenges/0_Smart-Home/_firmware/wap/config.ino
+cp wap/t2-config.h ../challenges/2_Power-Grid/_firmware/wap/config.ino
