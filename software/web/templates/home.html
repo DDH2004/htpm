@@ -76,8 +76,25 @@
                     <div id="target-1-contents" class="box-contents">
 
                         <h1>TARGET: Smart House</h1>
+                        <p>IoT, where the S stands for security! Let's knock someone's lights out (literally).</p>
                         <ol>
-                            <li>Lorem ipsum dolor sit amet.</li>
+                            <li>You'll need to use Linux for any kind of serious hacking. Live boot into your Kali USB. If your team does not have one, ask an organizer to receive one. Do not boot into install mode. Live boot is a feature of many Linux distros that gives you access to a complete OS completely off of a USB without needing to install. Do not remove your USB while you're booted in.</li>
+                            <li>We first need to hack into the network being broadcasted over Wi-Fi. Using either your phone, other device, or your live Kali OS, look for the "Family Wi-Fi" network. Try logging in -- you can't, because you don't know the key (password).</li>
+                            <li>In order to crack the key, we need to capture and crack a WPA2 handshake. This handshake occurs when a client first connects to a Wi-Fi network. In order to do Wi-Fi hacking, we need to unlock some uncommon features in our computer's Wi-Fi hardware. First, find out what your wireless interface's name is with <code>ip a</code>. Usually, a wireless interface will start with <code>wlan</code>,<code>wlp</code>,<code>wlx</code>, or something similar.</li>
+                            <li>Put your wireless interface into monitor mode with <code>airmon-ng check kill</code> and then <code>airmon-ng start ${interface}</code>. If you run into permission problems, remember to <code>sudo</code>.</li>
+                            <li>Now, start a capture and find out the channel and BSSID of the target network: <code>airodump-ng ${interface}</code>. You'll see a lot of networks. Take note of the one you want to attack. Exit by pressing "Q".</li>
+                            <li>Capture the frames, filtering for the specific channel and BSSID of the target network and writing to an output file. You may want to do this on your desktop so that the files are easily accessible. Run <code>mkdir ~/Desktop/smart_house/ && cd ~/Desktop/smart_house/</code>, and then run <code>airodump-ng ${interface} --channel ${ch} --bssid ${bssid} --write {capture}</code>.</li>
+                            <li>Take note of the stations connected to that network. In another terminal, deauthenticate a client in order to force it to reconnect and transmit a handshake: <code>aireplay-ng -0 4 -a ${bssid} -c ${station} ${interface}</code>.</li>
+                            <li>Keep on trying this until you see that a handshake has been captured on the terminal running <code>airodump-ng</code>. Once a handshake has been captured, close your terminal running <code>aireplay-ng</code> and return to the terminal running <code>airodump-ng</code>. Exit by pressing "Q".</li>
+                            <li>Crack the handshake with a wordlist attack. You'll find plenty of wordlists on Kali in <code>/usr/share/wordlists/</code>. The general syntax for cracking the handshake will be <code>aircrack-ng -w ${wordlist} ${cap}</code>. (Hint: a good wordlist is so effective that it might rock you.)</li>
+                            <li>After you've successfully cracked the key, log into the network. You may need to re-enable the services you killed earlier, either through the terminal or via the GUI.</li>
+                            <li>You've hacked into the network. Unfortunately, this is where HTP!m has to take some creative liberty for legal reasons, and immersion is a little broken. Our network lacks an uplink and it's illegal for us to piggyback off of a larger network (especially considering s.kat's employer). Our targets are hosted on a VPN in the cloud. After you've hacked into the network, let an organizer know and we'll give you ovpn configs for your team so you can connect to the network in the cloud. In the real world, you wouldn't need a VPN -- you'd be directly connected to the network. Connect back to a network with a gateway to the Internet and connect to the VPN.</li>
+                            <li>You're in the network now, one degree of immersion removed. Now, it's time to hack the actual target itself. Find out who's on the network. First, run <code>ip a</code> and find out what your IP is in the network. Then, you can run a network scan and discover hosts: <code>nmap ${network_id}/24</code>.</li>
+                            <li>Identify the target. It's running a web server.</li>
+                            <li>Connect to the target's web server with a browser. There's a login page.</li>
+                            <li>Did you know that default credentials are super common? A lot of people think that as long as the perimeter is secure, then everything inside is secure too. Try logging in using some common default credentials.</li>
+                            <li>You're in! You've solved this challenge. In the notes section, leave a note behind that says "Team ${your_team_name} was here!". The platform will mark your challenge as solved shortly afterwards.</li>
+                            <li>Knock the lights out. Feel free to come closer to the city to see it happen up close.</li>
                         </ol>
 
                     </div>
@@ -85,8 +102,13 @@
                     <div id="target-2-contents" class="box-contents" hidden>
 
                         <h1>TARGET: Railroad</h1>
+                        <p>If you were at "Hack the Tracks!" last year or the "Hack the Planet!" prototype last March, you'll love this one. We have a train that you can take over, but this time, we're teaching you to phish.</p>
                         <ol>
-                            <li>Consectetur adipiscing elit.</li>
+                            <li>Unlike the other challenges, there is no Wi-Fi network for this one. You are challenged to phish a user in order to get them to run malware.</li>
+                            <li>Write your malware. This can be as simple as a Bash one-liner, or as complex as C ransomware. The target system is running Linux. It would be most ideal if you could get a reverse shell.</li>
+                            <li>Send a phishing email to htpm23.jeffords-railroad@shawnd.xyz. Be creative and be convincing! You may want to send this from an email address other than your university email, so as to not accidentally break any rules.</li>
+                            <li>If your email is convincing enough, the user will run any attachments.</li>
+                            <li>When you've penetrated the system, leave behind a note that says "Team ${your_team_name} was here!" in <code>/tmp/note.txt</code>. You may want to look around the filesystem for something that allows you to control the train. We'll leave it up to you to explore.</li>
                         </ol>
 
                     </div>
@@ -94,8 +116,15 @@
                     <div id="target-3-contents" class="box-contents" hidden>
 
                         <h1>TARGET: Power Grid</h1>
+                        <p>The city has an actually functional power grid. This challenge is much more difficult and involves actually using exploit code. If you solve it, then you can actually knock out the power for the entire city.</p>
                         <ol>
-                            <li>Sed feugiat leo vel elit efficitur?</li>
+                            <li>Hack into the network and discover the host. This is the mostly the same as steps 1-12 on the "Smart House" target, except now you're trying to hack into "Power Grid Wi-Fi".</li>
+                            <li>After discovering the target host, discover the target application. Hint: <code>nmap</code> only scans the most common ports by default. In order to scan all ports, you can pass the <code>-p-</code> argument.</li>
+                            <li>You can connect to the target application with <code>nc ${ip} ${port}</code>. Try logging in. Notice how it prints out the username upon a failed login attempt? We can exploit this.</li>
+                            <li>Try logging in, but entering <code>%x %x %x %x</code> as the username. You'll see some weird output. What you've just discovered is something known as a <b>format string vulnerability</b>.</li>
+                            <li>We can leverage format string vulnerabilities in many ways, including to read memory. To help you out, we're providing you with some exploit code that exploits a format string vulnerability in order to scan memory and leak the password. Download, install the dependencies, and run: <a style="color: grey" href="/static/other/exploit-t2-htpm-t0.py" target="_blank">exploit-t2-htpm-t0.py</a></li>
+                            <li>Use the leaked password to log in. We'll leave it up to you to learn how to explore and navigate this shell. Remember to write "Team ${your_team_name} was here!" to note.txt so that the platform marks this challenge as complete.</li>
+                            <li>When it's time to knock out the power, you may want to come closer to the city before pulling the trigger.</li>
                         </ol>
 
                     </div>

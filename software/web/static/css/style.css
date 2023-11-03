@@ -347,3 +347,9 @@ div.target-resume {
 .target-start:hover, .target-active:hover, .target-complete:hover {
     cursor: pointer;
 }
+
+code {
+    background-color: grey;
+    padding: 1px;
+    border-radius: 4px;
+}
