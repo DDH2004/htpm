@@ -1,9 +1,14 @@
 FROM ubuntu:23.04
 
-RUN apt-get update && apt-get install -y gcc make socat
+COPY inst2@t2-htpm-t0.ovpn /etc/openvpn/client/
+RUN apt-get update && apt-get install -y \
+	openvpn openssh-server \
+	gcc make socat
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-COPY . /scadaos/
+COPY app/* /scadaos/
 WORKDIR /scadaos/
 RUN make
 
-CMD /scadaos/serve.sh
+COPY bootstrap.sh .
+CMD ./bootstrap.sh
