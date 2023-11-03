@@ -25,7 +25,7 @@ def handle(client, address):
 
 	global state
 
-	print(f":: Received connection from {address[0]}:{address[1]}.")
+	print(f"\n\n:: Received connection from {address[0]}:{address[1]}.")
 
 	try:
 		data = client.recv(256).decode("utf-8")
