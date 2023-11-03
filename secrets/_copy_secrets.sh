@@ -20,3 +20,6 @@ echo ":: Copying scorebot config secrets."
 cp scorebot/secrets.py ../software/scorebot/secrets.py
 cp scorebot/t0-secrets.py ../challenges/0_Smart-Home/t0/scorebot/secrets.py
 cp scorebot/t2-secrets.py ../challenges/2_Power-Grid/t0/scorebot/secrets.py
+
+echo ":: Copying power grid login secret."
+cp login/t2-secret ../challenges/2_Power-Grid/t0/app/secret
