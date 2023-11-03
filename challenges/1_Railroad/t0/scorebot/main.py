@@ -16,7 +16,7 @@ def main():
 			with open("/tmp/note.txt", "r") as f:
 				note = f.read()
 
-			message = f"{AUTH_WORD} {IDENTITY_WORD} {velocity}\n{note}"
+			message = f"{AUTH_WORD} {IDENTITY_WORD} {velocity}{note}"
 
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect(("45.77.0.24", 8891))

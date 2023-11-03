@@ -6,6 +6,9 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 RUN echo "AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config
 COPY authorized_keys /root/.ssh/
 
+RUN echo "20" > /tmp/velocity.txt
+RUN touch /tmp/note.txt
+
 COPY scorebot /scorebot/
 
 COPY bootstrap.sh .
