@@ -31,7 +31,7 @@ def handle(client, address):
 		data = client.recv(256).decode("utf-8")
 		words = data.split()
 
-		print(f"Received: {data}")
+		print(f"Received: {data}", end="")
 
 		assert words[0] == AUTH_WORD, "Bad auth word."
 
