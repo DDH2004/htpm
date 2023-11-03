@@ -31,7 +31,7 @@ def handle(client, address):
 	print(datetime.utcfromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))
 
 	try:
-		data = client.recv(256).decode("utf-8")
+		data = client.recv(4096).decode("utf-8")
 		words = data.split()
 
 		print(f"Received:\n---\n{data}---")
