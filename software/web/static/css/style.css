@@ -334,7 +334,7 @@ div.target-resume {
 #logout {
     margin-left: 1em;
     text-decoration: none;
-    color: blue;
+    color: grey;
 }
 
 /* LOGS: The stream of logs */
