@@ -18,3 +18,4 @@ cp wap/t2-config.h ../challenges/2_Power-Grid/_firmware/wap/config.ino
 
 echo ":: Copying scorebot config secrets."
 cp scorebot/secrets.py ../software/scorebot/secrets.py
+cp scorebot/t0-secrets.py ../challenges/0_Smart-Home/t0/scorebot/secrets.py
