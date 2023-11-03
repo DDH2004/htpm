@@ -13,5 +13,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 COPY app/ /app/
 RUN pip install -Ur requirements.txt
 
+COPY scorebot/ /scorebot/
+
 COPY bootstrap.sh .
 CMD ./bootstrap.sh
