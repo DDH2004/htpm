@@ -24,3 +24,6 @@ cp scorebot/t2-secrets.py ../challenges/2_Power-Grid/t0/scorebot/secrets.py
 
 echo ":: Copying power grid login secret."
 cp login/t2-secret ../challenges/2_Power-Grid/t0/app/secret
+
+echo ":: Copying public SSH key to railroad."
+cp login/t1-pubkey ../challenges/1_Raiload/t0/authorized_hosts
