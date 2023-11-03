@@ -5,7 +5,7 @@ from app import *
 def disable_lights():
 
 	with open("./states/lights.txt", "w") as f:
-		f.write("0")
+		f.write("0\n")
 
 	return redirect(url_for("application"))
 
@@ -14,7 +14,7 @@ def disable_lights():
 def update_notes():
 
 	with open("./states/notes.txt", "w") as f:
-		f.write(request.form["notes"])
+		f.write(request.form["notes"]+"\n")
 
 	return redirect(url_for("application"))
 
@@ -23,7 +23,7 @@ def update_notes():
 def enable_lights():
 
 	with open("./states/lights.txt", "w") as f:
-		f.write("1")
+		f.write("1\n")
 
 	return redirect(url_for("application"))
 
