@@ -3,9 +3,12 @@
 import socket
 import time
 from datetime import datetime
+from getpass import getpass
 from threading import Thread
 
 from secrets import *
+
+ENDPOINT = "https://htpm23.shawnd.xyz"
 
 state = {
 	"t0-htpm-t0": "NULL",
@@ -23,7 +26,41 @@ def format_state():
 
 	return output.encode()
 
-def handle(client, address):
+def reward(challenge, data, password):
+
+	r = requests.get(
+		ENDPOINT+"/login",
+		data={"username": "admin", "password": password},
+		allow_redirects=False,
+	)
+	cookies = r.cookies
+
+	r = requests.get(
+		ENDPOINT+"/api/manage/teams"
+		cookies=cookies
+	)
+	j = json.loads(r.text)
+
+	teams = []
+
+	for team in j["Teams"]:
+		team.append(team[1])
+
+	for line in data.split("\n"):
+		for team in teams:
+			if f"team {team.lower()} was here" in line.lower():
+				r = requests.post(
+					ENDPOINT+"/api/manage/solves",
+					data={
+						"action": "create",
+						"team": team, "challenge": challenge
+					},
+					cookie=cookies,
+				)
+				if r.status_code == 200:
+					print(f"Rewarded team {team} for solving {challenge}.")
+
+def handle(client, address, password):
 
 	global state
 
@@ -41,14 +78,17 @@ def handle(client, address):
 		if words[1] == IDENTITY_WORD["t0-htpm-t0"]:
 			print("Status update from Smart Home.")
 			state["t0-htpm-t0"] = str(words[2])
+			reward("t0", data, password)
 
 		elif words[1] == IDENTITY_WORD["t1-htpm-t0"]:
 			print("Status update from Railroad.")
 			state["t1-htpm-t0"] = str(words[2])
+			reward("t1", data, password)
 
 		elif words[1] == IDENTITY_WORD["t2-htpm-t0"]:
 			print("Status update from Power Grid.")
 			state["t2-htpm-t0"] = str(words[2])
+			reward("t2", data, password)
 
 		elif words[1] == IDENTITY_WORD["retrieval"]:
 			print("Retrieval request.")
@@ -64,6 +104,8 @@ def handle(client, address):
 
 def main():
 
+	password = getpass("[login] password for admin: ")
+
 	with socket.socket() as s:
 		s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 		print(":: Listening on 0.0.0.0:8891.")
@@ -71,7 +113,7 @@ def main():
 		s.listen()
 		while True:
 			c, addr = s.accept()
-			Thread(target=handle, args=(c,addr), daemon=True).start()
+			Thread(target=handle, args=(c,addr,password), daemon=True).start()
 
 if __name__ == "__main__":
 	main()
