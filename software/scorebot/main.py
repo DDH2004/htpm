@@ -36,7 +36,7 @@ def reward(challenge, data, password):
 	cookies = r.cookies
 
 	r = requests.get(
-		ENDPOINT+"/api/manage/teams"
+		ENDPOINT+"/api/manage/teams",
 		cookies=cookies
 	)
 	j = json.loads(r.text)
