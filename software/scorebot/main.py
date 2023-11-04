@@ -46,7 +46,7 @@ def reward(challenge, data, password):
 	teams = []
 
 	for team in j["Teams"]:
-		team.append(team[1])
+		teams.append(team[1])
 
 	for line in data.split("\n"):
 		for team in teams:
