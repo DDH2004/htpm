@@ -80,17 +80,17 @@ def handle(client, address, password):
 		if words[1] == IDENTITY_WORD["t0-htpm-t0"]:
 			print("Status update from Smart Home.")
 			state["t0-htpm-t0"] = str(words[2])
-			reward("t0", data, password)
+			reward("Smart House", data, password)
 
 		elif words[1] == IDENTITY_WORD["t1-htpm-t0"]:
 			print("Status update from Railroad.")
 			state["t1-htpm-t0"] = str(words[2])
-			reward("t1", data, password)
+			reward("Railroad", data, password)
 
 		elif words[1] == IDENTITY_WORD["t2-htpm-t0"]:
 			print("Status update from Power Grid.")
 			state["t2-htpm-t0"] = str(words[2])
-			reward("t2", data, password)
+			reward("Power Grid", data, password)
 
 		elif words[1] == IDENTITY_WORD["retrieval"]:
 			print("Retrieval request.")
