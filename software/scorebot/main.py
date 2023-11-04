@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import requests
 import socket
 import time
 from datetime import datetime
