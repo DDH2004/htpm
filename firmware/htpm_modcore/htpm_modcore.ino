@@ -6,45 +6,25 @@
 
 #include <Wire.h>
 #include "config.h"
-#include "protocol.h"
 #include "sr.h"
-
-/* Communication state variables. */
-uint16_t mid;
-bool valid;
 
 void receive()
 {
-	byte message[BUFFSIZE] = {0};
+	uint16_t buffer = 0;
+	byte message[16] = {0};
 
 	/* Skip the register byte. */
 	Wire.read();
 
-	for (uint64_t i = 0; Wire.available() && i < BUFFSIZE; i++)
+	for (uint64_t i = 0; Wire.available() && i < 16; i++)
 		message[i] = Wire.read();
 
+	buffer = message[0] << 8 | message[1];
+
 	Serial.println("Received a message.");
+	Serial.println(buffer, BIN);
 
-	if (!validate(message, BUFFSIZE))
-	{
-		Serial.println("Invalid message.");
-		valid = false;
-		return;
-	}
-
-	mid = ((_b(message,4) & 0x0F) << 8) | _b(message,5);
-	valid = true;
-	Serial.println("<<<<<<<<");
-	debug_print(message);
-}
-
-void reply()
-{
-	if (valid == false)
-		return;
-
-	Serial.println("Sending a reply.");
-	send_ack(mid, ADDRESS, 0, VERSION);
+	sr_write(buffer);
 }
 
 void setup()
@@ -53,13 +33,9 @@ void setup()
 
 	Wire.begin(ADDRESS);
 	Wire.onReceive(receive);
-	Wire.onRequest(reply);
 
 	sr_init();
 	sr_write(0x0000);
-
-	/* Initialize variables. */
-	valid = 0;
 }
 
 void loop()
