@@ -30,7 +30,7 @@ def format_state():
 
 def reward(challenge, data, password):
 
-	r = requests.get(
+	r = requests.post(
 		ENDPOINT+"/login",
 		data={"username": "admin", "password": password},
 		allow_redirects=False,
