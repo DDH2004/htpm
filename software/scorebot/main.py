@@ -57,7 +57,7 @@ def reward(challenge, data, password):
 						"action": "create",
 						"team": team, "challenge": challenge
 					},
-					cookie=cookies,
+					cookies=cookies,
 				)
 				if r.status_code == 200:
 					print(f"Rewarded team {team} for solving {challenge}.")
